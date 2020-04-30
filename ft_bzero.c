@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/04/30 18:33:58 by amalliar         ###   ########.fr       */
+/*   Created: 2020/04/30 14:00:28 by amalliar          #+#    #+#             */
+/*   Updated: 2020/04/30 18:49:08 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <stddef.h>
-# include <stdint.h>
+#include "libft.h"
 
-void	*ft_memset(void *ptr, int value, size_t num);
-void	bzero(void *ptr, size_t num);
+/*
+** Sets the first num bytes of the block of memory
+** pointed by ptr to zero.
+*/
 
-#endif
+void	ft_bzero(void *ptr, size_t num)
+{
+	while (num >= 8)
+	{
+		*(uint64_t *)ptr = 0;
+		ptr += 8;
+		num -= 8;
+	}
+	while (num--)
+		*(uint8_t *)ptr++ = 0;
+}
