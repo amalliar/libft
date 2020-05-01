@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 14:00:28 by amalliar          #+#    #+#             */
-/*   Updated: 2020/04/30 18:49:08 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/01 12:35:18 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,5 @@
 
 void	ft_bzero(void *ptr, size_t num)
 {
-	while (num >= 8)
-	{
-		*(uint64_t *)ptr = 0;
-		ptr += 8;
-		num -= 8;
-	}
-	while (num--)
-		*(uint8_t *)ptr++ = 0;
+	ft_memset(ptr, 0, num);
 }
