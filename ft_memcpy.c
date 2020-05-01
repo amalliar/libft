@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/01 13:10:15 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/01 20:08:20 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ** src directly to the memory block pointed to by dest.
 */
 
-static inline void		write_block1B(uint64_t *dest, uint64_t *src, size_t *num)
+static inline void		write_block8b(uint64_t *dest, uint64_t *src, \
+							size_t *num)
 {
 	((uint8_t *)*dest)[0] = ((uint8_t *)*src)[0];
 	*dest += 1;
@@ -25,7 +26,8 @@ static inline void		write_block1B(uint64_t *dest, uint64_t *src, size_t *num)
 	*num -= 1;
 }
 
-static inline void		write_block8B(uint64_t *dest, uint64_t *src, size_t *num)
+static inline void		write_block64b(uint64_t *dest, uint64_t *src, \
+							size_t *num)
 {
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
 	*dest += 8;
@@ -33,7 +35,8 @@ static inline void		write_block8B(uint64_t *dest, uint64_t *src, size_t *num)
 	*num -= 8;
 }
 
-static inline void		write_block64B(uint64_t *dest, uint64_t *src, size_t *num)
+static inline void		write_block512b(uint64_t *dest, uint64_t *src, \
+							size_t *num)
 {
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[1];
@@ -60,13 +63,13 @@ void					*ft_memcpy(void *dest, const void *src, size_t num)
 	if (num >= 8)
 	{
 		while (dest_ % 8)
-			write_block1B(&dest_, &src_, &num);
+			write_block8b(&dest_, &src_, &num);
 		while (num >= 64)
-			write_block64B(&dest_, &src_, &num);
+			write_block512b(&dest_, &src_, &num);
 		while (num >= 8)
-			write_block8B(&dest_, &src_, &num);
+			write_block64b(&dest_, &src_, &num);
 	}
 	while (num)
-		write_block1B(&dest_, &src_, &num);
+		write_block8b(&dest_, &src_, &num);
 	return (dest);
 }
