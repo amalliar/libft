@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 14:00:28 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/02 11:47:46 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:29:56 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** ptr to the specified value c (interpreted as an unsigned char).
 */
 
-static inline void		write_block8b(uint64_t *dest, uint64_t block, \
+static inline void		byte_copy_fwd(uint64_t *dest, uint64_t block, \
 							size_t *num)
 {
 	((uint8_t *)*dest)[0] = block;
@@ -25,7 +25,7 @@ static inline void		write_block8b(uint64_t *dest, uint64_t block, \
 	*num -= 1;
 }
 
-static inline void		write_block64b(uint64_t *dest, uint64_t block, \
+static inline void		word_copy_fwd(uint64_t *dest, uint64_t block, \
 							size_t *num)
 {
 	((uint64_t *)*dest)[0] = block;
@@ -33,7 +33,7 @@ static inline void		write_block64b(uint64_t *dest, uint64_t block, \
 	*num -= 8;
 }
 
-static inline void		write_block512b(uint64_t *dest, uint64_t block, \
+static inline void		page_copy_fwd(uint64_t *dest, uint64_t block, \
 							size_t *num)
 {
 	((uint64_t *)*dest)[0] = block;
@@ -61,13 +61,13 @@ void					*ft_memset(void *ptr, int c, size_t num)
 		block |= block << 16;
 		block |= block << 32;
 		while (dest % 8)
-			write_block8b(&dest, block, &num);
+			byte_copy_fwd(&dest, block, &num);
 		while (num >= 64)
-			write_block512b(&dest, block, &num);
+			page_copy_fwd(&dest, block, &num);
 		while (num >= 8)
-			write_block64b(&dest, block, &num);
+			word_copy_fwd(&dest, block, &num);
 	}
 	while (num)
-		write_block8b(&dest, block, &num);
+		byte_copy_fwd(&dest, block, &num);
 	return (ptr);
 }
