@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/01 20:08:20 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/01 21:34:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static inline void		write_block512b(uint64_t *dest, uint64_t *src, \
 							size_t *num)
 {
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[1];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[2];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[3];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[4];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[5];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[6];
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[7];
+	((uint64_t *)*dest)[1] = ((uint64_t *)*src)[1];
+	((uint64_t *)*dest)[2] = ((uint64_t *)*src)[2];
+	((uint64_t *)*dest)[3] = ((uint64_t *)*src)[3];
+	((uint64_t *)*dest)[4] = ((uint64_t *)*src)[4];
+	((uint64_t *)*dest)[5] = ((uint64_t *)*src)[5];
+	((uint64_t *)*dest)[6] = ((uint64_t *)*src)[6];
+	((uint64_t *)*dest)[7] = ((uint64_t *)*src)[7];
 	*dest += 64;
 	*src += 64;
 	*num -= 64;
