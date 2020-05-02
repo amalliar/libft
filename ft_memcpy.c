@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/01 21:34:10 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:26:46 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** src directly to the memory block pointed to by dest.
 */
 
-static inline void		write_block8b(uint64_t *dest, uint64_t *src, \
+static inline void		byte_copy_fwd(uint64_t *dest, uint64_t *src, \
 							size_t *num)
 {
 	((uint8_t *)*dest)[0] = ((uint8_t *)*src)[0];
@@ -26,7 +26,7 @@ static inline void		write_block8b(uint64_t *dest, uint64_t *src, \
 	*num -= 1;
 }
 
-static inline void		write_block64b(uint64_t *dest, uint64_t *src, \
+static inline void		word_copy_fwd(uint64_t *dest, uint64_t *src, \
 							size_t *num)
 {
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
@@ -35,7 +35,7 @@ static inline void		write_block64b(uint64_t *dest, uint64_t *src, \
 	*num -= 8;
 }
 
-static inline void		write_block512b(uint64_t *dest, uint64_t *src, \
+static inline void		page_copy_fwd(uint64_t *dest, uint64_t *src, \
 							size_t *num)
 {
 	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
@@ -63,13 +63,13 @@ void					*ft_memcpy(void *dest, const void *src, size_t num)
 	if (num >= 8)
 	{
 		while (dest_ % 8)
-			write_block8b(&dest_, &src_, &num);
+			byte_copy_fwd(&dest_, &src_, &num);
 		while (num >= 64)
-			write_block512b(&dest_, &src_, &num);
+			page_copy_fwd(&dest_, &src_, &num);
 		while (num >= 8)
-			write_block64b(&dest_, &src_, &num);
+			word_copy_fwd(&dest_, &src_, &num);
 	}
 	while (num)
-		write_block8b(&dest_, &src_, &num);
+		byte_copy_fwd(&dest_, &src_, &num);
 	return (dest);
 }
