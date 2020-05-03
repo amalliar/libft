@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 14:00:28 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/02 12:29:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/03 15:16:02 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ void					*ft_memset(void *ptr, int c, size_t num)
 		block |= block << 8;
 		block |= block << 16;
 		block |= block << 32;
-		while (dest % 8)
+		while (dest % 8 != 0)
 			byte_copy_fwd(&dest, block, &num);
 		while (num >= 64)
 			page_copy_fwd(&dest, block, &num);
 		while (num >= 8)
 			word_copy_fwd(&dest, block, &num);
 	}
-	while (num)
+	while (num != 0)
 		byte_copy_fwd(&dest, block, &num);
 	return (ptr);
 }

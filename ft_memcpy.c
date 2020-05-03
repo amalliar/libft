@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/02 12:26:46 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/03 15:14:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void					*ft_memcpy(void *dest, const void *src, size_t num)
 	src_ = (uint64_t)src;
 	if (num >= 8)
 	{
-		while (dest_ % 8)
+		while (dest_ % 8 != 0)
 			byte_copy_fwd(&dest_, &src_, &num);
 		while (num >= 64)
 			page_copy_fwd(&dest_, &src_, &num);
 		while (num >= 8)
 			word_copy_fwd(&dest_, &src_, &num);
 	}
-	while (num)
+	while (num != 0)
 		byte_copy_fwd(&dest_, &src_, &num);
 	return (dest);
 }

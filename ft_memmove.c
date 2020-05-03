@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 20:29:48 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/02 13:03:55 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/03 15:15:39 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void					*ft_memmove(void *dest, const void *src, size_t num)
 		src_ += num;
 		if (num >= 8)
 		{
-			while (dest_ % 8)
+			while (dest_ % 8 != 0)
 				byte_copy_bwd(&dest_, &src_, &num);
 			while (num >= 8)
 				word_copy_bwd(&dest_, &src_, &num);
 		}
-		while (num)
+		while (num != 0)
 			byte_copy_bwd(&dest_, &src_, &num);
 	}
 	return (dest);

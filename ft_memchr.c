@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 13:19:15 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/01 18:43:09 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/03 15:13:32 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void					*ft_memchr(const void *ptr, int c, size_t num)
 
 	chr = (uint8_t)c;
 	chr_ptr = (const uint8_t *)ptr;
-	while (num > 0 && (size_t)chr_ptr % 8 != 0)
+	while (num != 0 && (size_t)chr_ptr % 8 != 0)
 	{
 		if (*chr_ptr == chr)
 			return ((void *)chr_ptr);
@@ -66,7 +66,7 @@ void					*ft_memchr(const void *ptr, int c, size_t num)
 	init_blocks(&repeated_one, &repeated_c, &chr);
 	test_longword(&longword_ptr, &num, repeated_c, repeated_one);
 	chr_ptr = (const uint8_t *)longword_ptr;
-	while (num-- > 0)
+	while (num-- != 0)
 		if (*chr_ptr++ == chr)
 			return ((void *)chr_ptr - 1);
 	return (NULL);
