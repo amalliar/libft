@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 15:35:01 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/04 16:24:59 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <unistd.h>
 
 void		ft_bzero(void *ptr, size_t num);
 void		*ft_memset(void *ptr, int c, size_t num);
@@ -24,6 +25,7 @@ void		*ft_memccpy(void *dest, const void *src, int c, size_t num);
 void		*ft_memmove(void *dest, const void *src, size_t num);
 void		*ft_memchr(const void *ptr, int c, size_t num);
 void		*ft_calloc(size_t num, size_t size);
+void		ft_putchar_fd(char c, int fd);
 int			ft_memcmp(const void *ptr1, const void *ptr2, size_t num);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
