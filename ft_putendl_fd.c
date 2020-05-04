@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:13:03 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 18:14:14 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/04 21:47:08 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 void	ft_putendl_fd(char *str, int fd)
 {
+	if (!str)
+		return ;
 	write(fd, str, ft_strlen(str));
 	write(fd, "\n", 1);
 }
