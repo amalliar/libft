@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 18:14:20 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/04 21:51:35 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		*ft_calloc(size_t num, size_t size);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *str, int fd);
 void		ft_putendl_fd(char *str, int fd);
+void		ft_putnbr_fd(int num, int fd);
 int			ft_memcmp(const void *ptr1, const void *ptr2, size_t num);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -40,5 +41,6 @@ int			ft_atoi(const char *str);
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t num);
 char		*ft_strdup(const char *str);
+char		*ft_itoa(int num);
 
 #endif
