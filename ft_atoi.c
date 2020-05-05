@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 15:02:12 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 16:17:05 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/05 13:30:55 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ int		ft_atoi(const char *str)
 	else
 		negative = 0;
 	num = 0;
-	while (*str >= '0' && *str <= '9')
+	while (num <= INT_MAX && *str >= '0' && *str <= '9')
 	{
 		num = num * 10 + *str - '0';
 		++str;
-		if (num > INT_MAX)
-			break ;
 	}
 	if (negative)
 		return ((-num < INT_MIN || (*str >= '0' && *str <= '9')) ? 0 : -num);
