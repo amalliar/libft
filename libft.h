@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 21:51:35 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/05 15:52:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t num);
 char		*ft_strdup(const char *str);
 char		*ft_itoa(int num);
+char		*ft_strchr(char *str, int c);
 
 #endif
