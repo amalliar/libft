@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 14:52:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/05 16:13:10 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/06 23:40:42 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static inline void		init_magic(uint64_t *himagic, uint64_t *lomagic, \
 	*chmagic |= *chmagic << 32;
 }
 
-static inline int		test_longword(char **char_ptr, char c)
+static inline int		test_longword(const char **char_ptr, char c)
 {
 	int		i;
 
@@ -50,7 +50,7 @@ static inline int		test_longword(char **char_ptr, char c)
 	return (0);
 }
 
-char					*ft_strchr(char *str, int c)
+char					*ft_strchr(const char *str, int c)
 {
 	const uint64_t	*longword_ptr;
 	uint64_t		longword;
@@ -60,7 +60,7 @@ char					*ft_strchr(char *str, int c)
 
 	while ((size_t)str % 8 != 0)
 		if (*str == (char)c)
-			return (str);
+			return ((char *)str);
 		else if (*str++ == '\0')
 			return (NULL);
 	longword_ptr = (const uint64_t *)str;
@@ -73,7 +73,7 @@ char					*ft_strchr(char *str, int c)
 		{
 			str = (char *)(longword_ptr - 1);
 			if (test_longword(&str, c))
-				return (str);
+				return ((char *)str);
 		}
 	}
 }
