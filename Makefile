@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/04/30 18:12:08 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/06 19:20:48 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ AR := ar -rcs
 NAME := libft.a
 NAMESO := libft.so
 
-OBJDIR := obj
+OBJDIR := .
 SRCDIR := .
 DEPDIR := $(OBJDIR)/.dep
 
@@ -56,7 +56,7 @@ $(DEPDIR): ; @mkdir -p $@
 .PHONY: clean
 clean:
 	-rm -rf $(DEPDIR)
-	-rm -rf $(OBJDIR)
+	-rm -rf $(OBJS)
 
 .PHONY: fclean
 fclean: clean
