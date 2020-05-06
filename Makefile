@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/06 19:20:48 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/06 21:31:36 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAMESO := libft.so
 
 OBJDIR := .
 SRCDIR := .
-DEPDIR := $(OBJDIR)/.dep
+DEPDIR := .git/.dep
 
 SRCS := $(wildcard $(SRCDIR)/*.c)
 OBJS := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
