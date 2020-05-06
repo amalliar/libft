@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/06 22:31:36 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/06 23:39:27 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ size_t		ft_strlcpy(char *dest, const char *src, size_t num);
 size_t		ft_strlcat(char *dest, const char *src, size_t num);
 char		*ft_strdup(const char *str);
 char		*ft_itoa(int num);
-char		*ft_strchr(char *str, int c);
+char		*ft_strchr(const char *str, int c);
 char		*ft_strrchr(const char *str, int c);
 char		*ft_strnstr(const char *big, const char *little, size_t num);
 char		*ft_strmapi(const char *str, char (*func)(unsigned int, char));
+char		**ft_split(const char *str, char c);
 
 #endif
