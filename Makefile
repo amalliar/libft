@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/07 22:24:53 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/07 22:57:01 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
 AR     := ar -rcs
 NAME   := libft.a
 NAMESO := libft.so
-
+BONUS  := .git/.bonus
 DEPDIR := .git/.dep
 
 SRCM   := ft_split.c \
@@ -72,7 +72,6 @@ POST_COMPILE = mv -f $(DEPDIR)/$*.tmp $(DEPDIR)/$*.d && touch $@
 all: $(NAME)
 
 $(NAME): $(OBJM)
-	-rm -f $(NAME)
 	$(AR) $@ $^
 
 .PHONY: so
@@ -83,9 +82,11 @@ $(NAMESO): $(OBJM) $(OBJB)
 	$(CC) -shared -o $@ $^
 
 .PHONY: bonus
-bonus: $(NAME) $(OBJB)
+bonus: $(BONUS)
+	
+$(BONUS): $(NAME) $(OBJB)
 	$(AR) $^
-
+	@touch $(BONUS)
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
@@ -98,8 +99,9 @@ $(DEPDIR): ; @mkdir -p $@
 .PHONY: clean
 clean:
 	-rm -rf $(DEPDIR)
-	-rm -rf $(OBJM)
-	-rm -rf $(OBJB)
+	-rm -f $(OBJM)
+	-rm -f $(OBJB)
+	-rm -f $(BONUS)
 
 .PHONY: fclean
 fclean: clean
