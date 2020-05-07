@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/07 22:08:27 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/07 22:15:19 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRCM   := ft_split.c \
 	  ft_putendl_fd.c \
 	  ft_putnbr_fd.c \
 	  ft_putstr_fd.c
-SRCB   := ft_lstnew.c
+SRCB   := ft_lstnew.c \
+	  ft_lstadd_front.c
 OBJM   := $(SRCM:%.c=%.o)
 OBJB   := $(SRCB:%.c=%.o)
 DEPM   := $(OBJM:%.o=%.d)
