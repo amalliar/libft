@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/07 17:37:50 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/07 19:59:35 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char		*ft_strnstr(const char *big, const char *little, size_t num);
 char		*ft_strmapi(const char *str, char (*func)(unsigned int, char));
 char		*ft_strjoin(const char *str1, const char *str2);
 char		*ft_substr(const char *str, unsigned int start, size_t num);
+char		*ft_strtrim(const char *str, const char *set);
 char		**ft_split(const char *str, char c);
 
 #endif
