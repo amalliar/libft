@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/07 21:53:55 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/07 22:08:27 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ bonus: $(NAME) $(OBJB)
 
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
-	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
 	@$(POST_COMPILE)
 
 $(DEPDIR)/%.d: ;
