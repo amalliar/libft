@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/08 21:21:34 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/08 21:37:41 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ SRCB   := ft_lstnew.c \
 	  ft_lstlast.c \
 	  ft_lstadd_back.c \
 	  ft_lstdelone.c \
-	  ft_lstclear.c
+	  ft_lstclear.c \
+	  ft_lstiter.c
 OBJM   := $(SRCM:%.c=%.o)
 OBJB   := $(SRCB:%.c=%.o)
 DEPM   := $(OBJM:%.o=%.d)
