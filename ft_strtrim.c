@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 18:08:17 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/07 20:16:30 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/08 22:34:37 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strtrim(const char *str, const char *set)
 	char		*little;
 	size_t		len;
 
-	if (!str)
+	if (!str || !set)
 		return (NULL);
 	while (*str && ft_strchr(set, *str) != NULL)
 		++str;
