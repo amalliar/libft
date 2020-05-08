@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 22:25:04 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/07 22:28:13 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/08 21:28:25 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_lstsize(t_list *lst)
 {
 	int		count;
 
-	if (!lst)
+	if (lst == NULL)
 		return (0);
 	count = 1;
 	while (lst->next != NULL)
