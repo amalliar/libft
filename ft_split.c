@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 23:06:02 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/07 00:54:12 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/09 19:34:47 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ static void		*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 			free(ptr);
 		return (NULL);
 	}
-	if (old_size != 0 && new_size > old_size)
-		ft_memcpy(tmp, ptr, old_size);
-	else
-		ft_memcpy(tmp, ptr, new_size);
 	if (old_size != 0)
+	{
+		if (new_size > old_size)
+			ft_memcpy(tmp, ptr, old_size);
+		else
+			ft_memcpy(tmp, ptr, new_size);
 		free(ptr);
+	}
 	return (tmp);
 }
 
@@ -66,7 +68,7 @@ char			**ft_split(const char *str, char c)
 	char			**word_tab;
 	size_t			tab_size;
 
-	if (!str)
+	if (!str || (word_tab = NULL))
 		return (NULL);
 	tab_size = 0;
 	while ((ptr = ft_strchr(str, c)) != NULL)
