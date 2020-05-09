@@ -6,14 +6,14 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 20:52:32 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/01 20:26:12 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/09 20:59:23 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** The memccpy() function copies no more than num bytes from memory area src
+** The ft_memccpy() function copies no more than num bytes from memory area src
 ** to memory area dest, stopping when the character c is found.
 */
 
