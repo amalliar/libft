@@ -6,70 +6,72 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/03 15:14:50 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/09 23:42:09 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+typedef unsigned long	t_longword;
 
 /*
 ** Copies the values of num bytes from the location pointed to by
 ** src directly to the memory block pointed to by dest.
 */
 
-static inline void		byte_copy_fwd(uint64_t *dest, uint64_t *src, \
+static inline void		byte_copy_fwd(t_longword *dest, t_longword *src, \
 							size_t *num)
 {
-	((uint8_t *)*dest)[0] = ((uint8_t *)*src)[0];
-	*dest += 1;
-	*src += 1;
-	*num -= 1;
+	((unsigned char *)*dest)[0] = ((unsigned char *)*src)[0];
+	++*dest;
+	++*src;
+	--*num;
 }
 
-static inline void		word_copy_fwd(uint64_t *dest, uint64_t *src, \
+static inline void		word_copy_fwd(t_longword *dest, t_longword *src, \
 							size_t *num)
 {
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
-	*dest += 8;
-	*src += 8;
-	*num -= 8;
+	((t_longword *)*dest)[0] = ((t_longword *)*src)[0];
+	*dest += sizeof(t_longword);
+	*src += sizeof(t_longword);
+	*num -= sizeof(t_longword);
 }
 
-static inline void		page_copy_fwd(uint64_t *dest, uint64_t *src, \
+static inline void		page_copy_fwd(t_longword *dest, t_longword *src, \
 							size_t *num)
 {
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
-	((uint64_t *)*dest)[1] = ((uint64_t *)*src)[1];
-	((uint64_t *)*dest)[2] = ((uint64_t *)*src)[2];
-	((uint64_t *)*dest)[3] = ((uint64_t *)*src)[3];
-	((uint64_t *)*dest)[4] = ((uint64_t *)*src)[4];
-	((uint64_t *)*dest)[5] = ((uint64_t *)*src)[5];
-	((uint64_t *)*dest)[6] = ((uint64_t *)*src)[6];
-	((uint64_t *)*dest)[7] = ((uint64_t *)*src)[7];
-	*dest += 64;
-	*src += 64;
-	*num -= 64;
+	((t_longword *)*dest)[0] = ((t_longword *)*src)[0];
+	((t_longword *)*dest)[1] = ((t_longword *)*src)[1];
+	((t_longword *)*dest)[2] = ((t_longword *)*src)[2];
+	((t_longword *)*dest)[3] = ((t_longword *)*src)[3];
+	((t_longword *)*dest)[4] = ((t_longword *)*src)[4];
+	((t_longword *)*dest)[5] = ((t_longword *)*src)[5];
+	((t_longword *)*dest)[6] = ((t_longword *)*src)[6];
+	((t_longword *)*dest)[7] = ((t_longword *)*src)[7];
+	*dest += 8 * sizeof(t_longword);
+	*src += 8 * sizeof(t_longword);
+	*num -= 8 * sizeof(t_longword);
 }
 
 void					*ft_memcpy(void *dest, const void *src, size_t num)
 {
-	uint64_t	dest_;
-	uint64_t	src_;
+	t_longword		pdest;
+	t_longword		psrc;
 
 	if (!dest && !src)
 		return (dest);
-	dest_ = (uint64_t)dest;
-	src_ = (uint64_t)src;
-	if (num >= 8)
+	pdest = (t_longword)dest;
+	psrc = (t_longword)src;
+	if (num >= sizeof(t_longword))
 	{
-		while (dest_ % 8 != 0)
-			byte_copy_fwd(&dest_, &src_, &num);
-		while (num >= 64)
-			page_copy_fwd(&dest_, &src_, &num);
-		while (num >= 8)
-			word_copy_fwd(&dest_, &src_, &num);
+		while (pdest % sizeof(t_longword) != 0)
+			byte_copy_fwd(&pdest, &psrc, &num);
+		while (num >= 8 * sizeof(t_longword))
+			page_copy_fwd(&pdest, &psrc, &num);
+		while (num >= sizeof(t_longword))
+			word_copy_fwd(&pdest, &psrc, &num);
 	}
 	while (num != 0)
-		byte_copy_fwd(&dest_, &src_, &num);
+		byte_copy_fwd(&pdest, &psrc, &num);
 	return (dest);
 }
