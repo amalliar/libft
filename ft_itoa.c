@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 21:49:55 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/04 23:31:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/09 20:06:08 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,29 @@
 
 char	*ft_itoa(int num)
 {
-	long long	ll_num;
+	long long	llnum;
 	short		digits;
 	char		*beg;
 	char		*end;
 
-	ll_num = num;
+	llnum = num;
 	digits = (num == 0) ? 1 : 0;
 	while (num != 0)
 	{
 		++digits;
 		num /= 10;
 	}
-	if (!(beg = (char *)malloc((ll_num < 0) + digits + 1)))
+	if (!(beg = (char *)malloc((llnum < 0) + digits + 1)))
 		return (NULL);
-	*beg = (ll_num == 0) ? '0' : '-';
-	end = beg + (ll_num < 0) + digits;
+	*beg = (llnum == 0) ? '0' : '-';
+	end = beg + (llnum < 0) + digits;
 	*end-- = '\0';
-	ll_num = (ll_num < 0) ? -ll_num : ll_num;
-	while (ll_num != 0)
+	if (llnum < 0)
+		llnum = -llnum;
+	while (llnum != 0)
 	{
-		*end-- = ll_num % 10 + '0';
-		ll_num /= 10;
+		*end-- = llnum % 10 + '0';
+		llnum /= 10;
 	}
 	return (beg);
 }

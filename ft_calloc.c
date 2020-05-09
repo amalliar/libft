@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 16:24:15 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/03 16:30:29 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/09 19:50:23 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 
 void	*ft_calloc(size_t num, size_t size)
 {
+	void		*block;
 	size_t		block_size;
-	void		*ptr;
 
 	block_size = num * size;
-	if (!(ptr = malloc(block_size)))
+	if (!(block = malloc(block_size)))
 		return (NULL);
-	ft_bzero(ptr, block_size);
-	return (ptr);
+	ft_memset(block, 0, block_size);
+	return (block);
 }
