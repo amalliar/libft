@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 14:52:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 19:21:43 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 19:36:34 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ typedef unsigned long	t_longword;
 */
 
 static inline void		init_magic(t_longword *himagic, t_longword *lomagic, \
-							t_longword *chmagic, uint8_t chr)
+							t_longword *chmagic, unsigned char c)
 {
 	*himagic = 0x80808080;
 	*lomagic = 0x01010101;
-	*chmagic = chr;
+	*chmagic = c;
 	*chmagic |= *chmagic << 8;
 	*chmagic |= *chmagic << 16;
 	if (sizeof(t_longword) > 4)
