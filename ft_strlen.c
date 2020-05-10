@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 15:20:17 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 20:44:29 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:47:25 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static inline int		test_longword(const unsigned char **char_ptr)
 ** or 1GiB, are possible, but these are multiples of 4K) and so aligned
 ** reads will only access bytes in the same page as
 ** the valid part of the buffer."
-** 
+**
 ** https://stackoverflow.com/questions/37800739
 */
 
