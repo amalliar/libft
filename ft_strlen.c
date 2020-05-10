@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 15:20:17 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 19:44:50 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 20:44:29 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ static inline int		test_longword(const unsigned char **char_ptr)
 	}
 	return (0);
 }
+
+/*
+** Reading past the end of a buffer within the same page on x86 and x64:
+**
+** "It's clear that writing past the end of an input buffer is never safe,
+** in general, since you may clobber data beyond the buffer. It is also
+** clear that reading past the end of a buffer into another page may
+** trigger a segmentation fault/access violation, since the next page may
+** not be readable.
+**
+** In the special case of reading aligned values, however, a page fault
+** seems impossible, at least on x86. On that platform, pages (and hence
+** memory protection flags) have a 4K granularity (larger pages, e.g. 2MiB
+** or 1GiB, are possible, but these are multiples of 4K) and so aligned
+** reads will only access bytes in the same page as
+** the valid part of the buffer."
+** 
+** https://stackoverflow.com/questions/37800739
+*/
 
 size_t					ft_strlen(const char *str)
 {
