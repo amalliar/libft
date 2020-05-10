@@ -6,41 +6,59 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 14:52:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/06 23:40:42 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 19:21:43 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+typedef unsigned long	t_longword;
 
 /*
 ** Returns a pointer to the first occurrence of character
 ** in the C string str.
 */
 
-static inline void		init_magic(uint64_t *himagic, uint64_t *lomagic, \
-							uint64_t *chmagic, uint8_t chr)
+static inline void		init_magic(t_longword *himagic, t_longword *lomagic, \
+							t_longword *chmagic, uint8_t chr)
 {
-	*himagic = 0x8080808080808080;
-	*lomagic = 0x0101010101010101;
+	*himagic = 0x80808080;
+	*lomagic = 0x01010101;
 	*chmagic = chr;
 	*chmagic |= *chmagic << 8;
 	*chmagic |= *chmagic << 16;
-	*chmagic |= *chmagic << 32;
+	if (sizeof(t_longword) > 4)
+	{
+		*himagic |= (*himagic << 16) << 16;
+		*lomagic |= (*lomagic << 16) << 16;
+		*chmagic |= (*chmagic << 16) << 16;
+	}
 }
+
+/*
+**           byte1     byte2          byte8(4)
+**
+** lomagic:  00000001  00000001  ...  00000001
+**
+** himagic:  10000000  10000000  ...  10000000
+**
+** chmagic:  01000001  01000001  ...  01000001
+** (for c == 'A')
+*/
 
 static inline int		test_longword(const char **char_ptr, char c)
 {
-	int		i;
+	unsigned	i;
 
 	i = 0;
-	while (i < 8)
+	while (i < sizeof(t_longword))
 	{
 		if ((*char_ptr)[i] == c)
 		{
 			*char_ptr += i;
 			return (1);
 		}
-		else if ((*char_ptr)[i] == '\0')
+		if ((*char_ptr)[i] == '\0')
 		{
 			*char_ptr = NULL;
 			return (1);
@@ -52,18 +70,19 @@ static inline int		test_longword(const char **char_ptr, char c)
 
 char					*ft_strchr(const char *str, int c)
 {
-	const uint64_t	*longword_ptr;
-	uint64_t		longword;
-	uint64_t		himagic;
-	uint64_t		lomagic;
-	uint64_t		chmagic;
+	const t_longword	*longword_ptr;
+	t_longword			longword;
+	t_longword			himagic;
+	t_longword			lomagic;
+	t_longword			chmagic;
 
-	while ((size_t)str % 8 != 0)
-		if (*str == (char)c)
-			return ((char *)str);
-		else if (*str++ == '\0')
-			return (NULL);
-	longword_ptr = (const uint64_t *)str;
+	while ((size_t)str % sizeof(t_longword) != 0)
+	{
+		if (*str == (char)c || *str == '\0')
+			return ((*str == (char)c) ? (char *)str : NULL);
+		++str;
+	}
+	longword_ptr = (const t_longword *)str;
 	init_magic(&himagic, &lomagic, &chmagic, c);
 	while (1)
 	{
