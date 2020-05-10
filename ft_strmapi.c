@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 21:56:58 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/06 22:45:33 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:28:52 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strmapi(const char *str, char (*func)(unsigned int, char))
 	size_t	len;
 	size_t	i;
 
-	if (!str)
+	if (str == NULL)
 		return (NULL);
 	len = ft_strlen(str);
 	if (!(map = (char *)malloc(len + 1)))
