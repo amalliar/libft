@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/09 00:06:53 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/10 22:24:22 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,9 @@ $(NAMESO): $(OBJM) $(OBJB)
 .PHONY: bonus
 bonus: $(BONUS)
 	
-$(BONUS): $(NAME) $(OBJB)
-	$(AR) $^
-	@-touch $(BONUS)
+$(BONUS): $(OBJM) $(OBJB)
+	$(AR) $(NAME) $^
+	@touch $(BONUS)
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
@@ -105,9 +105,8 @@ $(DEPDIR): ; @mkdir -p $@
 .PHONY: clean
 clean:
 	-rm -rf $(DEPDIR)
-	-rm -f $(OBJM)
-	-rm -f $(OBJB)
-	-rm -f $(BONUS)
+	-rm -f $(OBJM) $(OBJB)
+	@-rm -f $(BONUS)
 
 .PHONY: fclean
 fclean: clean
