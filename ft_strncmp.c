@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 17:33:53 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/06 17:48:08 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:32:11 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int		ft_strncmp(const char *str1, const char *str2, size_t num)
 			return ((unsigned char)str1[2] - (unsigned char)str2[2]);
 		if (str1[3] == '\0' || str1[3] != str2[3])
 			return ((unsigned char)str1[3] - (unsigned char)str2[3]);
-		num -= 4;
 		str1 += 4;
 		str2 += 4;
+		num -= 4;
 	}
 	while (num != 0)
 	{
 		if (str1[0] == '\0' || str1[0] != str2[0])
 			return ((unsigned char)str1[0] - (unsigned char)str2[0]);
-		--num;
 		++str1;
 		++str2;
+		--num;
 	}
 	return (0);
 }
