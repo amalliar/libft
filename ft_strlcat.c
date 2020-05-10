@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 16:57:32 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/05 17:32:24 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 19:31:30 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t		ft_strlcat(char *dest, const char *src, size_t num)
 	size_t		dest_len;
 	size_t		to_copy;
 
-	if (!num)
+	if (num == 0)
 		return (ft_strlen(src));
 	src_len = ft_strlen(src);
 	dest_len = ft_strlen(dest);
