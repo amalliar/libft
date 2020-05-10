@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 08:04:18 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/08 22:07:57 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 19:49:24 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 # include <limits.h>
 # include <stddef.h>
-# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
