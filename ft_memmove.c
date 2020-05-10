@@ -6,11 +6,13 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 20:29:48 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/03 15:15:39 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 17:12:49 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+typedef unsigned long	t_longword;
 
 /*
 ** The ft_memmove() function copies num bytes from memory area src to
@@ -20,48 +22,48 @@
 ** from the temporary array to dest.
 */
 
-static inline void		byte_copy_bwd(uint64_t *dest, uint64_t *src, \
+static inline void		byte_copy_bwd(t_longword *dest, t_longword *src, \
 							size_t *num)
 {
-	*dest -= 1;
-	*src -= 1;
-	*num -= 1;
-	((uint8_t *)*dest)[0] = ((uint8_t *)*src)[0];
+	--*dest;
+	--*src;
+	--*num;
+	((unsigned char *)*dest)[0] = ((unsigned char *)*src)[0];
 }
 
-static inline void		word_copy_bwd(uint64_t *dest, uint64_t *src, \
+static inline void		word_copy_bwd(t_longword *dest, t_longword *src, \
 							size_t *num)
 {
-	*dest -= 8;
-	*src -= 8;
-	*num -= 8;
-	((uint64_t *)*dest)[0] = ((uint64_t *)*src)[0];
+	*dest -= sizeof(t_longword);
+	*src -= sizeof(t_longword);
+	*num -= sizeof(t_longword);
+	((t_longword *)*dest)[0] = ((t_longword *)*src)[0];
 }
 
 void					*ft_memmove(void *dest, const void *src, size_t num)
 {
-	uint64_t	dest_;
-	uint64_t	src_;
+	t_longword		pdest;
+	t_longword		psrc;
 
 	if (!dest && !src)
 		return (dest);
-	dest_ = (uint64_t)dest;
-	src_ = (uint64_t)src;
-	if (dest_ - src_ >= num)
+	pdest = (t_longword)dest;
+	psrc = (t_longword)src;
+	if (pdest - psrc >= num)
 		ft_memcpy(dest, src, num);
 	else
 	{
-		dest_ += num;
-		src_ += num;
-		if (num >= 8)
+		pdest += num;
+		psrc += num;
+		if (num >= sizeof(t_longword))
 		{
-			while (dest_ % 8 != 0)
-				byte_copy_bwd(&dest_, &src_, &num);
-			while (num >= 8)
-				word_copy_bwd(&dest_, &src_, &num);
+			while (pdest % sizeof(t_longword) != 0)
+				byte_copy_bwd(&pdest, &psrc, &num);
+			while (num >= sizeof(t_longword))
+				word_copy_bwd(&pdest, &psrc, &num);
 		}
 		while (num != 0)
-			byte_copy_bwd(&dest_, &src_, &num);
+			byte_copy_bwd(&pdest, &psrc, &num);
 	}
 	return (dest);
 }
