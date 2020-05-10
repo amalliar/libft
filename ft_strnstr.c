@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 19:26:22 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/06 21:02:30 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:33:58 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t num)
 		{
 			while (1)
 			{
-				if (num-- < 1 || (bc = *big++) == '\0')
+				if (num-- == 0 || (bc = *big++) == '\0')
 					return (NULL);
 				if (bc == lc)
 					break ;
