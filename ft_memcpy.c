@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 18:54:50 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/09 23:42:09 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/11 00:03:08 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void					*ft_memcpy(void *dest, const void *src, size_t num)
 	t_longword		pdest;
 	t_longword		psrc;
 
-	if (!dest && !src)
+	if (dest == src)
 		return (dest);
 	pdest = (t_longword)dest;
 	psrc = (t_longword)src;

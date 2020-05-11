@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 20:29:48 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 17:12:49 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/11 03:11:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void					*ft_memmove(void *dest, const void *src, size_t num)
 	t_longword		pdest;
 	t_longword		psrc;
 
-	if (!dest && !src)
+	if (dest == src)
 		return (dest);
 	pdest = (t_longword)dest;
 	psrc = (t_longword)src;
