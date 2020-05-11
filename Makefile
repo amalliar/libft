@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/11 03:08:58 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/11 21:02:47 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,55 +68,75 @@ OBJB   := $(SRCB:%.c=%.o)
 DEPM   := $(OBJM:%.o=%.d)
 DEPB   := $(OBJM:%.o=%.d)
 
+# Run multiple threads.
+MAKEFLAGS    = -j 4 --output-sync=recurse --no-print-directory
+
 # Protect against make incorrectly setting 'last modified'
 # attribute when running in parallel (-j flag).
 POST_COMPILE = mv -f $(DEPDIR)/$*.tmp $(DEPDIR)/$*.d && touch $@
 
+# Define some colors for echo:
+LGREEN := \033[1;32m
+WHITE  := \033[1;37m
+NOC    := \033[0m
+
 .DELETE_ON_ERROR:
 
-.PHONY: all
 all: $(NAME)
-
 $(NAME): $(OBJM)
-	$(AR) $@ $^
+	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
+	@$(AR) $@ $^
+.PHONY: all
 
-.PHONY: so
+bonus: $(BONUS)
+$(BONUS): $(OBJM) $(OBJB)
+	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
+	@$(AR) $(NAME) $^
+	@touch $(BONUS)
+.PHONY: bonus
+
 so: CFLAGS += -fpic
 so: $(NAMESO)
-
 $(NAMESO): $(OBJM) $(OBJB)
-	$(CC) -shared -o $@ $^
-
-.PHONY: bonus
-bonus: $(BONUS)
-	
-$(BONUS): $(OBJM) $(OBJB)
-	$(AR) $(NAME) $^
-	@-touch $(BONUS)
+	@echo -e "$(LGREEN)Linking C dynamic library $(NAMESO)$(NOC)"
+	@$(CC) -shared -o $@ $^
+.PHONY: so
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
 	@$(POST_COMPILE)
-
 $(DEPDIR)/%.d: ;
-
 $(DEPDIR): ; @mkdir -p $@
 
-.PHONY: clean
 clean:
-	-rm -rf $(DEPDIR)
-	-rm -f $(OBJM) $(OBJB)
+	@echo -e "$(WHITE)Removing C object files...$(NOC)"
+	@-rm -f $(OBJM) $(OBJB)
+	@echo -e "$(WHITE)Removing make dependency files...$(NOC)"
+	@-rm -rf $(DEPDIR)
 	@-rm -f $(BONUS)
+.PHONY: clean
 
-.PHONY: fclean
 fclean: clean
-	-rm -f $(NAME)
-	-rm -f $(NAMESO)
+	@echo -e "$(WHITE)Removing C static library $(NAME)$(NOC)"
+	@-rm -f $(NAME)
+	@echo -e "$(WHITE)Removing C dynamic library $(NAMESO)$(NOC)"
+	@-rm -f $(NAMESO)
+.PHONY: fclean
 
+re:
+	$(MAKE) fclean MAKEFLAGS=
+	$(MAKE) all MAKEFLAGS=
 .PHONY: re
-re: 
-	@$(MAKE) fclean
-	@$(MAKE) all
+
+help:
+	@echo "The following are some of the valid targets for this Makefile:"
+	@echo "... all (the default if no target is provided)"
+	@echo "... bonus"
+	@echo "... so"
+	@echo "... clean"
+	@echo "... fclean"
+	@echo "... re"
+.PHONY: help
 
 # Do not include .d files if the current goal is set to
 # clean/fclean/re.
