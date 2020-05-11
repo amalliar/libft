@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/10 22:24:22 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/11 03:08:58 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ bonus: $(BONUS)
 	
 $(BONUS): $(OBJM) $(OBJB)
 	$(AR) $(NAME) $^
-	@touch $(BONUS)
+	@-touch $(BONUS)
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
