@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/11 21:02:47 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/11 21:37:04 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,12 +86,14 @@ all: $(NAME)
 $(NAME): $(OBJM)
 	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
 	@$(AR) $@ $^
+	@echo "Built target $(NAME)"
 .PHONY: all
 
 bonus: $(BONUS)
 $(BONUS): $(OBJM) $(OBJB)
 	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
 	@$(AR) $(NAME) $^
+	@echo "Built target $(NAME)"
 	@touch $(BONUS)
 .PHONY: bonus
 
@@ -100,6 +102,7 @@ so: $(NAMESO)
 $(NAMESO): $(OBJM) $(OBJB)
 	@echo -e "$(LGREEN)Linking C dynamic library $(NAMESO)$(NOC)"
 	@$(CC) -shared -o $@ $^
+	@echo "Built target $(NAMESO)"
 .PHONY: so
 
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
