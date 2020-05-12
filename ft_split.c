@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 23:06:02 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 17:57:43 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/12 23:58:57 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,26 @@
 ** a delimiter. The array must be ended by a NULL pointer.
 */
 
-static void		*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+static void		*clear_tab(char **word_tab, size_t tab_size)
+{
+	if (word_tab != NULL)
+	{
+		while (tab_size-- != 0)
+			if (word_tab[tab_size] != NULL)
+				free(word_tab[tab_size]);
+		free(word_tab);
+	}
+	return (NULL);
+}
+
+static void		*realloc_tab(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*tmp;
 
 	if (!(tmp = malloc(new_size)))
 	{
 		if (old_size != 0)
-			free(ptr);
+			return (clear_tab(ptr, old_size));
 		return (NULL);
 	}
 	if (old_size != 0)
@@ -47,7 +59,7 @@ static int		null_terminate(const char *str, char ***word_tab, \
 	len = ft_strlen(str);
 	if (len != 0)
 	{
-		if (!(*word_tab = (char **)ft_realloc(*word_tab, *tab_size * \
+		if (!(*word_tab = (char **)realloc_tab(*word_tab, *tab_size * \
 			sizeof(char *), (*tab_size + 1) * sizeof(char *))))
 			return (1);
 		if (!((*word_tab)[*tab_size] = (char *)malloc(len + 1)))
@@ -56,19 +68,11 @@ static int		null_terminate(const char *str, char ***word_tab, \
 		(*word_tab)[*tab_size][len] = '\0';
 		++*tab_size;
 	}
-	if (!(*word_tab = (char **)ft_realloc(*word_tab, *tab_size * \
+	if (!(*word_tab = (char **)realloc_tab(*word_tab, *tab_size * \
 		sizeof(char *), (*tab_size + 1) * sizeof(char *))))
 		return (1);
 	(*word_tab)[*tab_size] = NULL;
 	return (0);
-}
-
-static void		*clear_tab(char **word_tab, size_t tab_size)
-{
-	while (tab_size-- != 0)
-		if (word_tab[tab_size] != NULL)
-			free(word_tab[tab_size]);
-	return (NULL);
 }
 
 char			**ft_split(const char *str, char c)
@@ -84,9 +88,9 @@ char			**ft_split(const char *str, char c)
 	{
 		if (ptr - str != 0)
 		{
-			if (!(word_tab = (char **)ft_realloc(word_tab, tab_size * \
+			if (!(word_tab = (char **)realloc_tab(word_tab, tab_size * \
 				sizeof(char *), (tab_size + 1) * sizeof(char *))))
-				return (clear_tab(word_tab, tab_size));
+				return (NULL);
 			if (!(word_tab[tab_size] = (char *)malloc(ptr - str + 1)))
 				return (clear_tab(word_tab, tab_size));
 			ft_memcpy(word_tab[tab_size], str, ptr - str);
