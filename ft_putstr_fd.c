@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 17:34:12 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/12 19:37:28 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	ft_putstr_fd(char *str, int fd)
 {
 	if (str == NULL)
 		return ;
-	write(fd, str, ft_strlen(str));
+	if (write(fd, str, ft_strlen(str)) == -1)
+		str = NULL;
 }
