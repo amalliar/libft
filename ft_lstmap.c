@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:40:08 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/09 20:53:28 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/12 23:01:27 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 ** function is used to delete the content of an element if needed.
 */
 
+t_list		*process_content(void *content, void *(*func)(void *), \
+				void (*del)(void *))
+{
+	t_list	*elem;
+	void	*tmp;
+
+	if (!(tmp = func(content)))
+		return (NULL);
+	if (!(elem = ft_lstnew(tmp)))
+	{
+		del(tmp);
+		return (NULL);
+	}
+	return (elem);
+}
+
 t_list		*ft_lstmap(t_list *lst, void *(*func)(void *), void (*del)(void *))
 {
 	t_list	*map;
@@ -28,7 +44,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*func)(void *), void (*del)(void *))
 	map = NULL;
 	if (lst != NULL)
 	{
-		if (!(elem = ft_lstnew(func(lst->content))))
+		if (!(elem = process_content(lst->content, func, del)))
 			return (NULL);
 		ft_lstadd_back(&map, elem);
 		tail = map;
@@ -36,7 +52,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*func)(void *), void (*del)(void *))
 	}
 	while (lst != NULL)
 	{
-		if (!(elem = ft_lstnew(func(lst->content))))
+		if (!(elem = process_content(lst->content, func, del)))
 		{
 			ft_lstclear(&map, del);
 			return (NULL);
