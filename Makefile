@@ -6,12 +6,12 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/11 21:37:04 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/13 01:51:49 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL  := /bin/sh
-CC     := gcc
+CC     := clang
 CFLAGS := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
           -march=native -O2 -I.
 AR     := ar -rcs
