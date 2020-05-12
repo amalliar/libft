@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 13:55:47 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/09 23:07:23 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/12 23:16:48 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ static inline int		byte_cmp(t_longword *pt1, t_longword *pt2, \
 	return (((unsigned char *)*pt1)[-1] - ((unsigned char *)*pt2)[-1]);
 }
 
+static inline int		word_cmp(t_longword *pt1, t_longword *pt2, \
+							size_t *num)
+{
+	if (((t_longword *)*pt1)[0] != ((t_longword *)*pt2)[0])
+		return (1);
+	*pt1 += sizeof(t_longword);
+	*pt2 += sizeof(t_longword);
+	*num -= sizeof(t_longword);
+	return (0);
+}
+
 int						ft_memcmp(const void *ptr1, const void *ptr2, \
 							size_t num)
 {
@@ -36,6 +47,8 @@ int						ft_memcmp(const void *ptr1, const void *ptr2, \
 	t_longword		pt2;
 	int				res;
 
+	if (ptr1 == ptr2)
+		return (0);
 	pt1 = (t_longword)ptr1;
 	pt2 = (t_longword)ptr2;
 	if (num >= sizeof(t_longword))
@@ -44,13 +57,8 @@ int						ft_memcmp(const void *ptr1, const void *ptr2, \
 			if ((res = byte_cmp(&pt1, &pt2, &num)) != 0)
 				return (res);
 		while (num >= sizeof(t_longword))
-		{
-			if (((t_longword *)pt1)[0] != ((t_longword *)pt2)[0])
+			if (word_cmp(&pt1, &pt2, &num) != 0)
 				break ;
-			pt1 += sizeof(t_longword);
-			pt2 += sizeof(t_longword);
-			num -= sizeof(t_longword);
-		}
 	}
 	while (num != 0)
 		if ((res = byte_cmp(&pt1, &pt2, &num)) != 0)
