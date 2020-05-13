@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/13 01:51:49 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/13 21:24:15 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,8 +80,6 @@ LGREEN := \033[1;32m
 WHITE  := \033[1;37m
 NOC    := \033[0m
 
-.DELETE_ON_ERROR:
-
 all: $(NAME)
 $(NAME): $(OBJM)
 	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
@@ -105,11 +103,13 @@ $(NAMESO): $(OBJM) $(OBJB)
 	@echo "Built target $(NAMESO)"
 .PHONY: so
 
+%.o: %.c
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
 	@$(POST_COMPILE)
 $(DEPDIR)/%.d: ;
 $(DEPDIR): ; @mkdir -p $@
+.PRECIOUS: $(DEPDIR)/%.d
 
 clean:
 	@echo -e "$(WHITE)Removing C object files...$(NOC)"
