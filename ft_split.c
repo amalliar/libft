@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 23:06:02 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/15 22:36:53 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/16 00:59:56 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	get_word_count(const char *str, char c)
 	size_t		count;
 
 	count = 0;
-	while ((sep = ft_strchr(str, c)) != NULL)
+	while (c != '\0' && (sep = ft_strchr(str, c)) != NULL)
 	{
 		if (sep - str != 0)
 			++count;
@@ -71,7 +71,7 @@ char			**ft_split(const char *str, char c)
 	if (!(word_tab = (char **)malloc((word_count + 1) * sizeof(char *))))
 		return (NULL);
 	word_tab[word_count] = NULL;
-	while ((sep = ft_strchr(str, c)) != NULL)
+	while (c != '\0' && (sep = ft_strchr(str, c)) != NULL)
 	{
 		if (sep - str != 0)
 		{
