@@ -6,20 +6,19 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/13 21:24:15 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/15 21:47:37 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL  := /bin/sh
 CC     := clang
 CFLAGS := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
-          -march=native -O2 -I.
+          -march=native -O2
 AR     := ar -rcs
 NAME   := libft.a
 NAMESO := libft.so
 BONUS  := .git/.bonus
 DEPDIR := .git/.dep
-
 SRCM   := ft_split.c \
           ft_itoa.c \
           ft_strchr.c \
@@ -91,8 +90,8 @@ bonus: $(BONUS)
 $(BONUS): $(OBJM) $(OBJB)
 	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
 	@$(AR) $(NAME) $^
-	@echo "Built target $(NAME)"
 	@touch $(BONUS)
+	@echo "Built target $(NAME)"
 .PHONY: bonus
 
 so: CFLAGS += -fpic
@@ -107,8 +106,8 @@ $(NAMESO): $(OBJM) $(OBJB)
 %.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
 	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
 	@$(POST_COMPILE)
-$(DEPDIR)/%.d: ;
 $(DEPDIR): ; @mkdir -p $@
+$(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
 
 clean:
@@ -141,8 +140,8 @@ help:
 	@echo "... re"
 .PHONY: help
 
-# Do not include .d files if the current goal is set to
-# clean/fclean/re.
+# Do not include dependency files if the current goal
+# is set to clean/fclean/re.
 ifeq ($(findstring $(MAKECMDGOALS), clean fclean re),)
     -include $(DEPM)
     -include $(DEPB)
