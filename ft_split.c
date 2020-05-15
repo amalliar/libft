@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 23:06:02 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/13 20:25:37 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/15 22:36:53 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,83 +18,71 @@
 ** a delimiter. The array must be ended by a NULL pointer.
 */
 
-static void		*clear_tab(char **word_tab, size_t tab_size)
+static size_t	get_word_count(const char *str, char c)
 {
-	if (tab_size != 0)
+	char		*sep;
+	size_t		count;
+
+	count = 0;
+	while ((sep = ft_strchr(str, c)) != NULL)
 	{
-		while (tab_size-- != 0)
-			if (word_tab[tab_size] != NULL)
-				free(word_tab[tab_size]);
-		free(word_tab);
+		if (sep - str != 0)
+			++count;
+		str = sep + 1;
 	}
+	return ((*str == '\0') ? count : count + 1);
+}
+
+static int		add_last_word(const char *str, char **word_tab, size_t i)
+{
+	size_t		word_len;
+
+	word_len = ft_strlen(str);
+	if (!(word_tab[i] = (char *)malloc(word_len + 1)))
+		return (1);
+	ft_memcpy(word_tab[i], str, word_len + 1);
+	return (0);
+}
+
+static char		**clear_tab(char **word_tab)
+{
+	size_t		i;
+
+	i = 0;
+	while (word_tab[i] != NULL)
+	{
+		free(word_tab[i]);
+		++i;
+	}
+	free(word_tab);
 	return (NULL);
-}
-
-static void		*realloc_tab(void *ptr, size_t old_size, size_t new_size)
-{
-	void	*tmp;
-
-	if (!(tmp = malloc(new_size)))
-		return (clear_tab(ptr, old_size));
-	if (old_size != 0)
-	{
-		if (new_size > old_size)
-			ft_memcpy(tmp, ptr, old_size);
-		else
-			ft_memcpy(tmp, ptr, new_size);
-		free(ptr);
-	}
-	return (tmp);
-}
-
-static char		**null_terminate(const char *str, char ***word_tab, \
-					size_t *tab_size)
-{
-	size_t		len;
-
-	len = ft_strlen(str);
-	if (len != 0)
-	{
-		if (!(*word_tab = (char **)realloc_tab(*word_tab, *tab_size * \
-			sizeof(char *), (*tab_size + 1) * sizeof(char *))))
-			return (NULL);
-		if (!((*word_tab)[*tab_size] = (char *)malloc(len + 1)))
-			return (clear_tab(*word_tab, *tab_size));
-		ft_memcpy((*word_tab)[*tab_size], str, len);
-		(*word_tab)[*tab_size][len] = '\0';
-		++*tab_size;
-	}
-	if (!(*word_tab = (char **)realloc_tab(*word_tab, *tab_size * \
-		sizeof(char *), (*tab_size + 1) * sizeof(char *))))
-		return (NULL);
-	(*word_tab)[*tab_size] = NULL;
-	return (*word_tab);
 }
 
 char			**ft_split(const char *str, char c)
 {
-	const char		*ptr;
-	char			**word_tab;
-	size_t			tab_size;
+	char		*sep;
+	char		**word_tab;
+	size_t		word_count;
+	size_t		i;
 
-	if (str == NULL)
+	if (str == NULL || (i = 0))
 		return (NULL);
-	word_tab = NULL;
-	tab_size = 0;
-	while ((ptr = ft_strchr(str, c)) != NULL)
+	word_count = get_word_count(str, c);
+	if (!(word_tab = (char **)malloc((word_count + 1) * sizeof(char *))))
+		return (NULL);
+	word_tab[word_count] = NULL;
+	while ((sep = ft_strchr(str, c)) != NULL)
 	{
-		if (ptr - str != 0)
+		if (sep - str != 0)
 		{
-			if (!(word_tab = (char **)realloc_tab(word_tab, tab_size * \
-				sizeof(char *), (tab_size + 1) * sizeof(char *))))
-				return (NULL);
-			if (!(word_tab[tab_size] = (char *)malloc(ptr - str + 1)))
-				return (clear_tab(word_tab, tab_size));
-			ft_memcpy(word_tab[tab_size], str, ptr - str);
-			word_tab[tab_size][ptr - str] = '\0';
-			++tab_size;
+			if (!(word_tab[i] = (char *)malloc(sep - str + 1)))
+				return (clear_tab(word_tab));
+			ft_memcpy(word_tab[i], str, sep - str);
+			word_tab[i++][sep - str] = '\0';
 		}
-		str = ptr + 1;
+		str = sep + 1;
 	}
-	return (null_terminate(str, &word_tab, &tab_size));
+	if (i < word_count && add_last_word(str, word_tab, i) != 0)
+		return (clear_tab(word_tab));
+	return (word_tab);
 }
