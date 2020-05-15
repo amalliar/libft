@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 17:36:05 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/10 21:37:47 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/15 22:56:14 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ char	*ft_substr(const char *str, unsigned int start, size_t num)
 
 	if (str == NULL)
 		return (NULL);
-	len = ft_strlen(str + start);
+	len = ft_strlen(str);
+	if (start > len)
+		return (NULL);
+	len -= start;
 	if (len > num)
 		len = num;
 	if (!(little = (char *)malloc(len + 1)))
 		return (NULL);
-	ft_strlcpy(little, str + start, len + 1);
+	ft_memcpy(little, str + start, len);
+	little[len] = '\0';
 	return (little);
 }
