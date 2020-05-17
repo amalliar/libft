@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 17:36:05 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/15 22:56:14 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/17 03:42:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_substr(const char *str, unsigned int start, size_t num)
 	char		*little;
 	size_t		len;
 
+	if (num == 0)
+		return (ft_strdup(""));
 	if (str == NULL)
 		return (NULL);
 	len = ft_strlen(str);
