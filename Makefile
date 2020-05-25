@@ -6,40 +6,41 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/25 09:46:19 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/25 10:08:57 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL       := /bin/sh
-CC          := clang
-CFLAGS      := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
-               -march=native -O2
-INCLUDE     := -I./include
-AR          := ar -rcs
-NAME        := libft.a
-NAMESO      := libft.so
-OBJDIR      := .obj
-DEPDIR      := .dep
+SHELL      := /bin/sh
+CC         := clang
+CFLAGS     := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
+              -march=native -O2
+INCLUDE    := -I./include
+AR         := ar -rcs
+NAME       := libft.a
+NAMESO     := libft.so
+OBJDIR     := .obj
+DEPDIR     := .dep
 
-FT_CTYPE    := ft_ctype/ft_isalnum.c \
-               ft_ctype/ft_isalpha.c \
-               ft_ctype/ft_isascii.c \
-               ft_ctype/ft_isdigit.c \
-               ft_ctype/ft_isprint.c \
-               ft_ctype/ft_tolower.c \
-               ft_ctype/ft_toupper.c
+FT_CTYPE   := ft_ctype/ft_isalnum.c \
+              ft_ctype/ft_isalpha.c \
+              ft_ctype/ft_isascii.c \
+              ft_ctype/ft_isdigit.c \
+              ft_ctype/ft_isprint.c \
+              ft_ctype/ft_tolower.c \
+              ft_ctype/ft_toupper.c
 
-FT_LIST    :=  ft_list/ft_lstadd_back.c \
-               ft_list/ft_lstadd_front.c \
-               ft_list/ft_lstclear.c \
-               ft_list/ft_lstdelone.c \
-               ft_list/ft_lstiter.c \
-               ft_list/ft_lstlast.c \
-               ft_list/ft_lstmap.c \
-               ft_list/ft_lstnew.c \
-               ft_list/ft_lstsize.c
+FT_LIST    := ft_list/ft_lstadd_back.c \
+              ft_list/ft_lstadd_front.c \
+              ft_list/ft_lstclear.c \
+              ft_list/ft_lstdelone.c \
+              ft_list/ft_lstiter.c \
+              ft_list/ft_lstlast.c \
+              ft_list/ft_lstmap.c \
+              ft_list/ft_lstnew.c \
+              ft_list/ft_lstsize.c
 
-FT_STDIO   := ft_stdio/ft_putchar_fd.c \
+FT_STDIO   := ft_stdio/ft_get_next_line.c \
+              ft_stdio/ft_putchar_fd.c \
               ft_stdio/ft_putendl_fd.c \
               ft_stdio/ft_putnbr_fd.c \
               ft_stdio/ft_putstr_fd.c
