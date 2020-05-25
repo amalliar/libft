@@ -6,116 +6,127 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/15 21:47:37 by amalliar         ###   ########.fr        #
+#    Updated: 2020/05/25 09:46:19 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL  := /bin/sh
-CC     := clang
-CFLAGS := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
-          -march=native -O2
-AR     := ar -rcs
-NAME   := libft.a
-NAMESO := libft.so
-BONUS  := .git/.bonus
-DEPDIR := .git/.dep
-SRCM   := ft_split.c \
-          ft_itoa.c \
-          ft_strchr.c \
-          ft_strdup.c \
-          ft_strjoin.c \
-          ft_strmapi.c \
-          ft_strnstr.c \
-          ft_strrchr.c \
-          ft_strtrim.c \
-          ft_substr.c \
-          ft_atoi.c \
-          ft_isalnum.c \
-          ft_isalpha.c \
-          ft_isascii.c \
-          ft_isdigit.c \
-          ft_isprint.c \
-          ft_memcmp.c \
-          ft_strncmp.c \
-          ft_tolower.c \
-          ft_toupper.c \
-          ft_strlcat.c \
-          ft_strlcpy.c \
-          ft_strlen.c \
-          ft_calloc.c \
-          ft_memccpy.c \
-          ft_memchr.c \
-          ft_memcpy.c \
-          ft_memmove.c \
-          ft_memset.c \
-          ft_bzero.c \
-          ft_putchar_fd.c \
-          ft_putendl_fd.c \
-          ft_putnbr_fd.c \
-          ft_putstr_fd.c
-SRCB   := ft_lstsize.c \
-          ft_lstlast.c \
-          ft_lstmap.c \
-          ft_lstnew.c \
-          ft_lstadd_back.c \
-          ft_lstadd_front.c \
-          ft_lstclear.c \
-          ft_lstdelone.c \
-          ft_lstiter.c
-OBJM   := $(SRCM:%.c=%.o)
-OBJB   := $(SRCB:%.c=%.o)
-DEPM   := $(OBJM:%.o=%.d)
-DEPB   := $(OBJM:%.o=%.d)
+SHELL       := /bin/sh
+CC          := clang
+CFLAGS      := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
+               -march=native -O2
+INCLUDE     := -I./include
+AR          := ar -rcs
+NAME        := libft.a
+NAMESO      := libft.so
+OBJDIR      := .obj
+DEPDIR      := .dep
+
+FT_CTYPE    := ft_ctype/ft_isalnum.c \
+               ft_ctype/ft_isalpha.c \
+               ft_ctype/ft_isascii.c \
+               ft_ctype/ft_isdigit.c \
+               ft_ctype/ft_isprint.c \
+               ft_ctype/ft_tolower.c \
+               ft_ctype/ft_toupper.c
+
+FT_LIST    :=  ft_list/ft_lstadd_back.c \
+               ft_list/ft_lstadd_front.c \
+               ft_list/ft_lstclear.c \
+               ft_list/ft_lstdelone.c \
+               ft_list/ft_lstiter.c \
+               ft_list/ft_lstlast.c \
+               ft_list/ft_lstmap.c \
+               ft_list/ft_lstnew.c \
+               ft_list/ft_lstsize.c
+
+FT_STDIO   := ft_stdio/ft_putchar_fd.c \
+              ft_stdio/ft_putendl_fd.c \
+              ft_stdio/ft_putnbr_fd.c \
+              ft_stdio/ft_putstr_fd.c
+
+FT_STDLIB  := ft_stdlib/ft_atoi.c \
+              ft_stdlib/ft_calloc.c \
+              ft_stdlib/ft_itoa.c \
+
+FT_STRING  := ft_string/ft_memccpy.c \
+              ft_string/ft_memchr.c \
+              ft_string/ft_memcmp.c \
+              ft_string/ft_memcpy.c \
+              ft_string/ft_memmove.c \
+              ft_string/ft_memset.c \
+              ft_string/ft_split.c \
+              ft_string/ft_strchr.c \
+              ft_string/ft_strdup.c \
+              ft_string/ft_strjoin.c \
+              ft_string/ft_strlcat.c \
+              ft_string/ft_strlcpy.c \
+              ft_string/ft_strlen.c \
+              ft_string/ft_strmapi.c \
+              ft_string/ft_strncmp.c \
+              ft_string/ft_strnstr.c \
+              ft_string/ft_strrchr.c \
+              ft_string/ft_strtrim.c \
+              ft_string/ft_substr.c
+
+FT_STRINGS := ft_strings/ft_bzero.c
+
+SRCS       := $(FT_CTYPE) $(FT_LIST) $(FT_STDIO) $(FT_STDLIB) $(FT_STRING) \
+              $(FT_STRINGS)
+OBJS       := $(SRCS:%.c=$(OBJDIR)/%.o)
+DEPS       := $(SRCS:%.c=$(DEPDIR)/%.d)
 
 # Run multiple threads.
-MAKEFLAGS    = -j 4 --output-sync=recurse --no-print-directory
+MAKEFLAGS  := -j 4 --output-sync=recurse --no-print-directory
 
-# Protect against make incorrectly setting 'last modified'
-# attribute when running in parallel (-j flag).
+# Protect against make incorrectly setting 'last modified' attribute 
+# when running in parallel (-j flag).
 POST_COMPILE = mv -f $(DEPDIR)/$*.tmp $(DEPDIR)/$*.d && touch $@
 
 # Define some colors for echo:
-LGREEN := \033[1;32m
-WHITE  := \033[1;37m
-NOC    := \033[0m
+LGREEN     := \033[1;32m
+WHITE      := \033[1;37m
+NOC        := \033[0m
 
 all: $(NAME)
-$(NAME): $(OBJM)
+$(NAME): $(OBJS)
 	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
-	@$(AR) $@ $^
+	@$(AR) $@ $?
 	@echo "Built target $(NAME)"
 .PHONY: all
 
-bonus: $(BONUS)
-$(BONUS): $(OBJM) $(OBJB)
-	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
-	@$(AR) $(NAME) $^
-	@touch $(BONUS)
-	@echo "Built target $(NAME)"
-.PHONY: bonus
-
 so: CFLAGS += -fpic
 so: $(NAMESO)
-$(NAMESO): $(OBJM) $(OBJB)
+$(NAMESO): $(OBJS)
 	@echo -e "$(LGREEN)Linking C dynamic library $(NAMESO)$(NOC)"
 	@$(CC) -shared -o $@ $^
 	@echo "Built target $(NAMESO)"
 .PHONY: so
 
-%.o: %.c
-%.o: %.c $(DEPDIR)/%.d | $(DEPDIR)
-	$(CC) $(CFLAGS) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
+$(OBJDIR)/%.o: %.c $(DEPDIR)/%.d | $(OBJDIR) $(DEPDIR)
+	$(CC) $(CFLAGS) $(INCLUDE) -MMD -MF $(DEPDIR)/$*.tmp -c -o $@ $<
 	@$(POST_COMPILE)
-$(DEPDIR): ; @mkdir -p $@
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)/ft_ctype
+	@mkdir -p $(OBJDIR)/ft_list
+	@mkdir -p $(OBJDIR)/ft_stdio
+	@mkdir -p $(OBJDIR)/ft_stdlib
+	@mkdir -p $(OBJDIR)/ft_string
+	@mkdir -p $(OBJDIR)/ft_strings
+$(DEPDIR):
+	@mkdir -p $(DEPDIR)/ft_ctype
+	@mkdir -p $(DEPDIR)/ft_list
+	@mkdir -p $(DEPDIR)/ft_stdio
+	@mkdir -p $(DEPDIR)/ft_stdlib
+	@mkdir -p $(DEPDIR)/ft_string
+	@mkdir -p $(DEPDIR)/ft_strings
 $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
 
 clean:
 	@echo -e "$(WHITE)Removing C object files...$(NOC)"
-	@-rm -f $(OBJM) $(OBJB)
+	@-rm -rf $(OBJDIR)
 	@echo -e "$(WHITE)Removing make dependency files...$(NOC)"
 	@-rm -rf $(DEPDIR)
-	@-rm -f $(BONUS)
 .PHONY: clean
 
 fclean: clean
@@ -133,16 +144,14 @@ re:
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
-	@echo "... bonus"
 	@echo "... so"
 	@echo "... clean"
 	@echo "... fclean"
 	@echo "... re"
 .PHONY: help
 
-# Do not include dependency files if the current goal
-# is set to clean/fclean/re.
+# Do not include dependency files if the current goal is
+# set to clean/fclean/re.
 ifeq ($(findstring $(MAKECMDGOALS), clean fclean re),)
-    -include $(DEPM)
-    -include $(DEPB)
+    -include $(DEPS)
 endif
