@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:19:35 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/24 09:03:48 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/28 20:09:17 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ void	ft_putnbr_fd(int num, int fd)
 		*end-- = llnum % 10 + '0';
 		llnum /= 10;
 	}
-	if (write(fd, beg, num) == -1)
-		num = 0;
+	(void)write(fd, beg, num);
 }

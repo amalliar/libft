@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:13:03 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/24 09:01:31 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/28 20:08:45 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_putendl_fd(char *str, int fd)
 {
 	if (str == NULL)
 		return ;
-	if (write(fd, str, ft_strlen(str)) == -1)
-		str = NULL;
-	if (write(fd, "\n", 1) == -1)
-		str = NULL;
+	(void)write(fd, str, ft_strlen(str));
+	(void)write(fd, "\n", 1);
 }

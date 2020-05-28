@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 16:22:14 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/24 08:59:56 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/05/28 20:08:07 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (write(fd, &c, 1) == -1)
-		c = 0;
+	(void)write(fd, &c, 1);
 }
