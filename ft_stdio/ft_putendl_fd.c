@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:13:03 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/28 20:08:45 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/06/03 19:47:19 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 #include "ft_string.h"
 
 /*
-** Outputs the C-string 'str' to the given file descriptor,
-** followed by a newline.
+** Outputs the C-string 'str' to the given file descriptor, followed by a
+** newline. On success the number of characters written is returned. If a
+** writing error occurs -1 is returned.
 */
 
-void	ft_putendl_fd(char *str, int fd)
+int		ft_putendl_fd(char *str, int fd)
 {
+	int		ret;
+
 	if (str == NULL)
-		return ;
-	(void)write(fd, str, ft_strlen(str));
-	(void)write(fd, "\n", 1);
+		return (-1);
+	if ((ret = write(fd, str, ft_strlen(str))) == -1)
+		return (-1);
+	if (write(fd, "\n", 1) == -1)
+		return (-1);
+	return (ret + 1);
 }

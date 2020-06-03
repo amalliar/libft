@@ -6,17 +6,19 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:19:35 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/28 20:09:17 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/06/03 19:49:00 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 
 /*
-** Outputs the integer 'num' to the given file descriptor.
+** Outputs the integer 'num' to the given file descriptor. On success
+** the number of characters written is returned. If a writing error
+** occurs -1 is returned.
 */
 
-void	ft_putnbr_fd(int num, int fd)
+int		ft_putnbr_fd(int num, int fd)
 {
 	long long	llnum;
 	short		digits;
@@ -41,5 +43,5 @@ void	ft_putnbr_fd(int num, int fd)
 		*end-- = llnum % 10 + '0';
 		llnum /= 10;
 	}
-	(void)write(fd, beg, num);
+	return (write(fd, beg, num));
 }

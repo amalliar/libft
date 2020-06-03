@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/28 20:09:34 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/06/03 19:51:40 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 #include "ft_string.h"
 
 /*
-** Outputs the C-string 'str' to the given file descriptor.
+** Outputs the C-string 'str' to the given file descriptor. On success
+** the number of characters written is returned. If a writing error
+** occurs -1 is returned.
 */
 
-void	ft_putstr_fd(char *str, int fd)
+int		ft_putstr_fd(char *str, int fd)
 {
+	int		ret;
+
 	if (str == NULL)
-		return ;
-	(void)write(fd, str, ft_strlen(str));
+		return (-1);
+	if ((ret = write(fd, str, ft_strlen(str))) == -1)
+		return (-1);
+	return (ret);
 }
