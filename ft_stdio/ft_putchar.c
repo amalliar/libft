@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdio.h                                         :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/24 07:45:23 by amalliar          #+#    #+#             */
-/*   Updated: 2020/06/30 00:00:18 by amalliar         ###   ########.fr       */
+/*   Created: 2020/06/29 23:55:17 by amalliar          #+#    #+#             */
+/*   Updated: 2020/06/29 23:59:27 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STDIO_H
-# define FT_STDIO_H
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "ft_stdio.h"
 
-int		ft_get_next_line(int fd, char **line);
-int		ft_putchar(int c);
-int		ft_putchar_fd(int c, int fd);
-int		ft_putendl_fd(char *str, int fd);
-int		ft_putnbr_fd(int num, int fd);
-int		ft_putstr_fd(char *str, int fd);
+/*
+** Writes a character to the standard output (stdout). On success, the
+** character written is returned. If a writing error occurs -1 is
+** returned.
+*/
 
-#endif
+int		ft_putchar(int c)
+{
+	if (write(STDOUT_FILENO, &c, 1) == -1)
+		return (-1);
+	return (c);
+}

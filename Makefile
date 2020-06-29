@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/05/25 10:08:57 by amalliar         ###   ########.fr        #
+#    Updated: 2020/06/30 00:01:41 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ FT_LIST    := ft_list/ft_lstadd_back.c \
               ft_list/ft_lstsize.c
 
 FT_STDIO   := ft_stdio/ft_get_next_line.c \
+              ft_stdio/ft_putchar.c \
               ft_stdio/ft_putchar_fd.c \
               ft_stdio/ft_putendl_fd.c \
               ft_stdio/ft_putnbr_fd.c \
