@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/06/30 00:01:41 by amalliar         ###   ########.fr        #
+#    Updated: 2020/07/09 22:08:11 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ NOC        := \033[0m
 
 all: $(NAME)
 $(NAME): $(OBJS)
-	@echo -e "$(LGREEN)Linking C static library $(NAME)$(NOC)"
+	@echo "$(LGREEN)Linking C static library $(NAME)$(NOC)"
 	@$(AR) $@ $?
 	@echo "Built target $(NAME)"
 .PHONY: all
@@ -99,7 +99,7 @@ $(NAME): $(OBJS)
 so: CFLAGS += -fpic
 so: $(NAMESO)
 $(NAMESO): $(OBJS)
-	@echo -e "$(LGREEN)Linking C dynamic library $(NAMESO)$(NOC)"
+	@echo "$(LGREEN)Linking C dynamic library $(NAMESO)$(NOC)"
 	@$(CC) -shared -o $@ $^
 	@echo "Built target $(NAMESO)"
 .PHONY: so
@@ -125,16 +125,16 @@ $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
 
 clean:
-	@echo -e "$(WHITE)Removing C object files...$(NOC)"
+	@echo "$(WHITE)Removing C object files...$(NOC)"
 	@-rm -rf $(OBJDIR)
-	@echo -e "$(WHITE)Removing make dependency files...$(NOC)"
+	@echo "$(WHITE)Removing make dependency files...$(NOC)"
 	@-rm -rf $(DEPDIR)
 .PHONY: clean
 
 fclean: clean
-	@echo -e "$(WHITE)Removing C static library $(NAME)$(NOC)"
+	@echo "$(WHITE)Removing C static library $(NAME)$(NOC)"
 	@-rm -f $(NAME)
-	@echo -e "$(WHITE)Removing C dynamic library $(NAMESO)$(NOC)"
+	@echo "$(WHITE)Removing C dynamic library $(NAMESO)$(NOC)"
 	@-rm -f $(NAMESO)
 .PHONY: fclean
 
