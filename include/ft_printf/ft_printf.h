@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 04:40:34 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/18 01:41:22 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/07/20 22:16:41 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ int					form_character(t_printf_info *info, va_list *ap);
 int					form_string(t_printf_info *info, va_list *ap);
 int					form_pointer(t_printf_info *info, va_list *ap);
 int					form_number(t_printf_info *info, va_list *ap, int done);
-int					ft_printf(const char *format, ...);
 
 #endif

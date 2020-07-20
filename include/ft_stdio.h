@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:45:23 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:43:54 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/07/20 22:16:39 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 
 int		ft_get_next_line(int fd, char **line);
+int		ft_printf(const char *format, ...);
 int		ft_putchar(int c);
 int		ft_putnchar(int c, int num);
 int		ft_putchar_fd(int c, int fd);
