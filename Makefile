@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/07/09 22:08:11 by amalliar         ###   ########.fr        #
+#    Updated: 2020/07/20 21:51:28 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SHELL      := /bin/sh
 CC         := clang
 CFLAGS     := -Wall -Wextra -Werror -fdiagnostics-color -g -pipe \
               -march=native -O2
-INCLUDE    := -I./include
+INCLUDE    := -I./include -I./include/ft_printf
 AR         := ar -rcs
 NAME       := libft.a
 NAMESO     := libft.so
@@ -26,6 +26,8 @@ FT_CTYPE   := ft_ctype/ft_isalnum.c \
               ft_ctype/ft_isascii.c \
               ft_ctype/ft_isdigit.c \
               ft_ctype/ft_isprint.c \
+	      ft_ctype/ft_islower.c \
+	      ft_ctype/ft_isupper.c \
               ft_ctype/ft_tolower.c \
               ft_ctype/ft_toupper.c
 
@@ -40,15 +42,31 @@ FT_LIST    := ft_list/ft_lstadd_back.c \
               ft_list/ft_lstsize.c
 
 FT_STDIO   := ft_stdio/ft_get_next_line.c \
+              ft_stdio/ft_printf/form_character.c \
+              ft_stdio/ft_printf/form_float.c \
+              ft_stdio/ft_printf/form_integer.c \
+              ft_stdio/ft_printf/form_number.c \
+              ft_stdio/ft_printf/form_percent.c \
+              ft_stdio/ft_printf/form_pointer.c \
+              ft_stdio/ft_printf/form_string.c \
+              ft_stdio/ft_printf/form_unsigned.c \
+              ft_stdio/ft_printf/form_unsigned_extra.c \
+              ft_stdio/ft_printf/format_parsers.c \
+              ft_stdio/ft_printf/ft_printf.c \
               ft_stdio/ft_putchar.c \
+              ft_stdio/ft_putnchar.c \
               ft_stdio/ft_putchar_fd.c \
               ft_stdio/ft_putendl_fd.c \
               ft_stdio/ft_putnbr_fd.c \
+              ft_stdio/ft_putstr.c \
+              ft_stdio/ft_putnstr.c \
               ft_stdio/ft_putstr_fd.c
 
 FT_STDLIB  := ft_stdlib/ft_atoi.c \
               ft_stdlib/ft_calloc.c \
+	      ft_stdlib/ft_ftoa.c \
               ft_stdlib/ft_itoa.c \
+              ft_stdlib/ft_utoa.c
 
 FT_STRING  := ft_string/ft_memccpy.c \
               ft_string/ft_memchr.c \
@@ -64,9 +82,13 @@ FT_STRING  := ft_string/ft_memccpy.c \
               ft_string/ft_strlcpy.c \
               ft_string/ft_strlen.c \
               ft_string/ft_strmapi.c \
+              ft_string/ft_strcmp.c \
               ft_string/ft_strncmp.c \
               ft_string/ft_strnstr.c \
               ft_string/ft_strrchr.c \
+	      ft_string/ft_strrev.c \
+	      ft_string/ft_strtolower.c \
+	      ft_string/ft_strtoupper.c \
               ft_string/ft_strtrim.c \
               ft_string/ft_substr.c
 
@@ -111,6 +133,7 @@ $(OBJDIR):
 	@mkdir -p $(OBJDIR)/ft_ctype
 	@mkdir -p $(OBJDIR)/ft_list
 	@mkdir -p $(OBJDIR)/ft_stdio
+	@mkdir -p $(OBJDIR)/ft_stdio/ft_printf
 	@mkdir -p $(OBJDIR)/ft_stdlib
 	@mkdir -p $(OBJDIR)/ft_string
 	@mkdir -p $(OBJDIR)/ft_strings
@@ -118,6 +141,7 @@ $(DEPDIR):
 	@mkdir -p $(DEPDIR)/ft_ctype
 	@mkdir -p $(DEPDIR)/ft_list
 	@mkdir -p $(DEPDIR)/ft_stdio
+	@mkdir -p $(DEPDIR)/ft_stdio/ft_printf
 	@mkdir -p $(DEPDIR)/ft_stdlib
 	@mkdir -p $(DEPDIR)/ft_string
 	@mkdir -p $(DEPDIR)/ft_strings

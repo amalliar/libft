@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   form_percent.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/06/14 06:42:37 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/18 06:24:31 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "ft_stdio.h"
-#include "ft_string.h"
 
-/*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
-*/
-
-int		ft_putstr_fd(char *str, int fd)
+int		form_percent(t_printf_info *info, va_list *ap)
 {
-	int		ret;
+	char	pchar;
 
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
-	return (ret);
+	(void)ap;
+	if (info->width > 1)
+	{
+		pchar = (info->flags & FLG_ZERO) ? '0' : ' ';
+		if (!(info->flags & FLG_MINUS))
+			ft_putnchar(pchar, info->width - 1);
+		ft_putchar('%');
+		if (info->flags & FLG_MINUS)
+			ft_putnchar(pchar, info->width - 1);
+		return (info->width);
+	}
+	ft_putchar('%');
+	return (1);
 }

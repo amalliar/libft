@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strtolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/07/17 05:43:35 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/17 06:16:11 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
 #include "ft_string.h"
+#include "ft_ctype.h"
 
 /*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
+** Converts the string to lowercase in place.
 */
 
-int		ft_putstr_fd(char *str, int fd)
+char	*ft_strtolower(char *str)
 {
-	int		ret;
+	char	*beg;
 
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
-	return (ret);
+	beg = str;
+	while (*str)
+	{
+		if (ft_isupper(*str))
+			*str = ft_tolower(*str);
+		++str;
+	}
+	return (beg);
 }

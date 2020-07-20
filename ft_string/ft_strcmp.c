@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/07/10 19:52:39 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/10 19:58:42 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
 #include "ft_string.h"
 
 /*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
+** This function starts comparing the first character of each string.
+** If they are equal to each other, it continues with the following pairs
+** until the characters differ or until a terminating null-character is reached.
 */
 
-int		ft_putstr_fd(char *str, int fd)
+int		ft_strcmp(const char *str1, const char *str2)
 {
-	int		ret;
-
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
-	return (ret);
+	while (*str1 && *str1 == *str2)
+	{
+		++str1;
+		++str2;
+	}
+	return (*str1 - *str2);
 }

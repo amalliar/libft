@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:45:23 by amalliar          #+#    #+#             */
-/*   Updated: 2020/06/30 00:00:18 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:43:54 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 
 int		ft_get_next_line(int fd, char **line);
 int		ft_putchar(int c);
+int		ft_putnchar(int c, int num);
 int		ft_putchar_fd(int c, int fd);
 int		ft_putendl_fd(char *str, int fd);
 int		ft_putnbr_fd(int num, int fd);
+int		ft_putstr(char *str);
+int		ft_putnstr(char *str, int num);
 int		ft_putstr_fd(char *str, int fd);
 
 #endif

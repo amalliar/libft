@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   form_table.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/06/14 07:21:10 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/15 17:10:29 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
-#include "ft_string.h"
+#ifndef FORM_TABLE_H
+# define FORM_TABLE_H
+# include "ft_printf.h"
 
-/*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
-*/
-
-int		ft_putstr_fd(char *str, int fd)
+static int	(*g_form_table[18])(t_printf_info *info, va_list *ap) = \
 {
-	int		ret;
+	form_percent,
+	form_integer,
+	form_integer,
+	form_unsigned,
+	form_unsigned,
+	form_unsigned,
+	form_unsigned,
+	form_float,
+	form_float,
+	form_float,
+	form_float,
+	form_float,
+	form_float,
+	form_float,
+	form_float,
+	form_character,
+	form_string,
+	form_pointer
+};
 
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
-	return (ret);
-}
+#endif

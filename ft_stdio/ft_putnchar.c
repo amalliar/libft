@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/06/29 23:55:17 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/13 19:26:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
-#include "ft_string.h"
 
 /*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
+** Writes num characters to the standard output (stdout). On success, the
+** number of characters written is returned. If a writing error occurs -1 is
+** returned.
 */
 
-int		ft_putstr_fd(char *str, int fd)
+int		ft_putnchar(int c, int num)
 {
 	int		ret;
 
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
+	ret = num;
+	while (num > 0)
+	{
+		if (write(STDOUT_FILENO, &c, 1) == -1)
+			return (-1);
+		--num;
+	}
 	return (ret);
 }

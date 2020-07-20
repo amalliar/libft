@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   form_unsigned.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 18:04:33 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/13 18:49:31 by amalliar         ###   ########.fr       */
+/*   Created: 2020/07/15 16:38:34 by amalliar          #+#    #+#             */
+/*   Updated: 2020/07/18 03:12:24 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
-#include "ft_string.h"
+#ifndef FORM_UNSIGNED_H
+# define FORM_UNSIGNED_H
+# include "ft_printf.h"
+# include "ft_string.h"
+# include "ft_stdio.h"
+# include "ft_stdlib.h"
 
-/*
-** Outputs the C-string 'str' to the given file descriptor. On success
-** the number of characters written is returned. If a writing error
-** occurs -1 is returned.
-*/
+void	print_num_base(t_printf_info *info);
 
-int		ft_putstr_fd(char *str, int fd)
-{
-	int		ret;
-
-	if (str == NULL)
-		return (-1);
-	if ((ret = write(fd, str, ft_strlen(str))) == -1)
-		return (-1);
-	return (ret);
-}
+#endif
