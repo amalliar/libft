@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/10/13 17:34:26 by amalliar         ###   ########.fr        #
+#    Updated: 2020/10/13 17:37:36 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ FT_STRING  := ft_string/ft_memccpy.c \
               ft_string/ft_strlcpy.c \
               ft_string/ft_strlen.c \
               ft_string/ft_strmapi.c \
+              ft_string/ft_strmatch.c \
               ft_string/ft_strcmp.c \
               ft_string/ft_strncmp.c \
               ft_string/ft_strnstr.c \
