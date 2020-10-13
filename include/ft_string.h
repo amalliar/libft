@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:19:51 by amalliar          #+#    #+#             */
-/*   Updated: 2020/07/17 05:49:17 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/10/13 17:32:12 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char		*ft_strtrim(const char *str, const char *set);
 char		*ft_substr(const char *str, unsigned int start, size_t num);
 int			ft_memcmp(const void *ptr1, const void *ptr2, size_t num);
 int			ft_strcmp(const char *str1, const char *str2);
+int			ft_strisnumeric(char *str);
 int			ft_strncmp(const char *str1, const char *str2, size_t num);
 size_t		ft_strlcat(char *dest, const char *src, size_t num);
 size_t		ft_strlcpy(char *dest, const char *src, size_t num);
