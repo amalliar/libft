@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctype.h                                         :+:      :+:    :+:   */
+/*   ft_putnstr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/24 07:26:04 by amalliar          #+#    #+#             */
-/*   Updated: 2020/08/05 20:47:33 by amalliar         ###   ########.fr       */
+/*   Created: 2020/08/04 18:49:25 by amalliar          #+#    #+#             */
+/*   Updated: 2020/10/13 17:13:58 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CTYPE_H
-# define FT_CTYPE_H
+#include "ft_stdio.h"
+#include "ft_string.h"
 
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
-int		ft_isascii(int c);
-int		ft_isdigit(int c);
-int		ft_isprint(int c);
-int		ft_isspace(int c);
-int		ft_islower(int c);
-int		ft_isupper(int c);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
+/*
+** Writes up to num characters from the string pointed to by str to the
+** file descriptor fd. On success the number of characters written is
+** returned. If a writing error occurs -1 is returned.
+*/
 
-#endif
+int		ft_putnstr_fd(char *str, int fd, int num)
+{
+	int		len;
+
+	len = ft_strlen(str);
+	if (num < len)
+		len = num;
+	return (write(fd, str, len));
+}
