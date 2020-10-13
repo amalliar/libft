@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2020/07/20 21:51:28 by amalliar         ###   ########.fr        #
+#    Updated: 2020/10/13 17:04:46 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ FT_CTYPE   := ft_ctype/ft_isalnum.c \
               ft_ctype/ft_isascii.c \
               ft_ctype/ft_isdigit.c \
               ft_ctype/ft_isprint.c \
-	      ft_ctype/ft_islower.c \
-	      ft_ctype/ft_isupper.c \
+              ft_ctype/ft_isspace.c \
+              ft_ctype/ft_islower.c \
+              ft_ctype/ft_isupper.c \
               ft_ctype/ft_tolower.c \
               ft_ctype/ft_toupper.c
 
@@ -64,7 +65,7 @@ FT_STDIO   := ft_stdio/ft_get_next_line.c \
 
 FT_STDLIB  := ft_stdlib/ft_atoi.c \
               ft_stdlib/ft_calloc.c \
-	      ft_stdlib/ft_ftoa.c \
+              ft_stdlib/ft_ftoa.c \
               ft_stdlib/ft_itoa.c \
               ft_stdlib/ft_utoa.c
 
@@ -86,9 +87,9 @@ FT_STRING  := ft_string/ft_memccpy.c \
               ft_string/ft_strncmp.c \
               ft_string/ft_strnstr.c \
               ft_string/ft_strrchr.c \
-	      ft_string/ft_strrev.c \
-	      ft_string/ft_strtolower.c \
-	      ft_string/ft_strtoupper.c \
+              ft_string/ft_strrev.c \
+              ft_string/ft_strtolower.c \
+              ft_string/ft_strtoupper.c \
               ft_string/ft_strtrim.c \
               ft_string/ft_substr.c
 
