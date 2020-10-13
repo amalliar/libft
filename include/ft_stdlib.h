@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:12:41 by amalliar          #+#    #+#             */
-/*   Updated: 2020/10/13 17:24:10 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/10/13 17:27:32 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int					ft_atoi(const char *str);
 void				*ft_calloc(size_t num, size_t size);
 void				ft_qsort(void *base, size_t num, size_t size, \
 						int (*compar)(const void *, const void *));
+void				*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif
