@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:12:41 by amalliar          #+#    #+#             */
-/*   Updated: 2020/10/13 17:18:49 by amalliar         ###   ########.fr       */
+/*   Updated: 2020/10/13 17:24:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,21 @@ typedef struct		s_ftoa_info
 
 }					t_ftoa_info;
 
+typedef struct		s_qsort_data
+{
+	void			*base;
+	void			*buff;
+	size_t			size;
+	int				(*compar)(const void *, const void *);
+}					t_qsort_data;
+
 char				*ft_ftoa(long double num, unsigned prec);
 char				*ft_itoa(intmax_t num, int base);
 char				*ft_utoa(uintmax_t num, int base);
 int					ft_abs(int num);
 int					ft_atoi(const char *str);
 void				*ft_calloc(size_t num, size_t size);
+void				ft_qsort(void *base, size_t num, size_t size, \
+						int (*compar)(const void *, const void *));
 
 #endif
