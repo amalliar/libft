@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_islower.c                                       :+:      :+:    :+:   */
+/*   ft_isgraph.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/14 03:11:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:29:41 by amalliar         ###   ########.fr       */
+/*   Created: 2021/05/16 04:18:36 by amalliar          #+#    #+#             */
+/*   Updated: 2021/05/16 04:22:50 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctype.h"
 
 /*
-** The ft_islower() function tests for any lower-case letters.
+** The ft_isgraph() function tests for any printing character except
+** space (` ') and other locale-specific space-like characters.
 ** 
 ** The value of the argument must be representable as an unsigned char
 ** or the value of EOF.
 */
 
-int	ft_islower(int c)
+int	ft_isgraph(int c)
 {
-	return ((char)c >= 'a' && (char)c <= 'z');
+	return (ft_isprint(c) && !ft_isspace(c));
 }

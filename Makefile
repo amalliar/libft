@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/05/16 03:33:30 by amalliar         ###   ########.fr        #
+#    Updated: 2021/05/16 05:46:57 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,16 @@ DEPDIR     := .dep
 
 FT_CTYPE   := ft_isalnum.c \
               ft_isalpha.c \
-              ft_isascii.c \
+              ft_isblank.c \
+              ft_iscntrl.c \
               ft_isdigit.c \
-              ft_isprint.c \
-              ft_isspace.c \
+              ft_isgraph.c \
               ft_islower.c \
+              ft_isprint.c \
+              ft_ispunct.c \
+              ft_isspace.c \
               ft_isupper.c \
+              ft_isxdigit.c \
               ft_tolower.c \
               ft_toupper.c
 FT_CTYPE   := $(addprefix ft_ctype/, $(FT_CTYPE))

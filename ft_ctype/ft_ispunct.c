@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_ispunct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/03 21:35:16 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/24 09:06:33 by amalliar         ###   ########.fr       */
+/*   Created: 2021/05/16 04:33:39 by amalliar          #+#    #+#             */
+/*   Updated: 2021/05/16 04:37:22 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctype.h"
 
 /*
-** Checks whether c is a 7-bit unsigned char value that
-** fits into the ASCII character set.
+** The ft_ispunct() function tests for any printing character,
+** except for space (` ') or a character for which ft_isalnum() is true.
+**
+** The value of the argument must be representable as an unsigned char
+** or the value of EOF.
 */
 
-int		ft_isascii(int c)
+int	ft_ispunct(int c)
 {
-	return (c >= 0 && c <= 127);
+	return (ft_isgraph(c) && !ft_isalnum(c));
 }

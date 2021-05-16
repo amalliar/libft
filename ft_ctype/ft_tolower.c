@@ -6,17 +6,23 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 21:49:57 by amalliar          #+#    #+#             */
-/*   Updated: 2020/05/24 09:07:34 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/16 04:53:05 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ctype.h"
 
 /*
-** Convert uppercase letter to lowercase.
+** The ft_tolower() function converts an upper-case letter to the corresponding
+** lower-case letter.
+**
+** The value of the argument must be representable as an unsigned char
+** or the value of EOF.
 */
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
-	return ((c >= 'A' && c <= 'Z') ? c - 'A' + 'a' : c);
+	if (ft_isupper(c))
+		return (c - 'A' + 'a');
+	return (c);
 }
