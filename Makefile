@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/05/16 05:46:57 by amalliar         ###   ########.fr        #
+#    Updated: 2021/05/18 04:02:32 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,6 @@ $(NAME): $(OBJS)
 	@printf "  $(BLUE)->$(NOCOLOR) Creating static library archive...\n"
 	@$(AR) $@ $?
 	@printf "$(GREEN)==>$(WHITE) Finished making: $(NAME)\n"
-	@-rm -f .status
 .PHONY: all
 
 so: CFLAGS += -fpic
@@ -157,8 +156,13 @@ $(NAMESO): $(OBJS)
 	@printf "  $(BLUE)->$(NOCOLOR) Creating dynamically linked shared library...\n"
 	@$(CC) -shared -o $@ $^
 	@printf "$(GREEN)==>$(WHITE) Finished making: $(NAMESO)\n"
-	@-rm -f .status
 .PHONY: so
+
+test: $(NAME)
+	@$(MAKE) -C tsuite MAKEFLAGS=
+	@./tsuite/test
+	@-rm -f tsuite/test
+.PHONY: test
 
 $(OBJDIR)/%.o: %.c $(DEPDIR)/%.d | $(OBJDIR) $(DEPDIR)
 	@printf $(PREBUILD_MSG)
@@ -211,6 +215,7 @@ help:
 	@printf "The following are some of the valid targets for this Makefile:\n"
 	@printf "... all (the default if no target is provided)\n"
 	@printf "... so\n"
+	@printf "... test\n"
 	@printf "... clean\n"
 	@printf "... fclean\n"
 	@printf "... re\n"
