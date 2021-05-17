@@ -6,12 +6,14 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:26:04 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 05:47:48 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:49:38 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CTYPE_H
 # define FT_CTYPE_H
+
+# include <stdint.h>
 
 /*
 ** These functions take the int equivalent of one character as parameter and

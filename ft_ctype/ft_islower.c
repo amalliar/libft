@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 03:11:22 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:29:41 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:52:12 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@
 
 int	ft_islower(int c)
 {
-	return ((char)c >= 'a' && (char)c <= 'z');
+	return ((uint8_t)c >= 'a' && (uint8_t)c <= 'z');
 }

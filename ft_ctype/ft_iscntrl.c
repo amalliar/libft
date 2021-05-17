@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 04:04:17 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:25:40 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:51:31 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@
 
 int	ft_iscntrl(int c)
 {
-	return (((char)c >= 0x00 && (char)c <= 0x1f) || (char)c == 0x7f);
+	return (((uint8_t)c >= 0x00 && (uint8_t)c <= 0x1f) || (uint8_t)c == 0x7f);
 }

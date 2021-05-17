@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 04:43:19 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:46:27 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:54:03 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 int	ft_isxdigit(int c)
 {
 	return (ft_isdigit(c) || \
-			((char)c >= 'a' && (char)c <= 'f') || \
-			((char)c >= 'A' && (char)c <= 'F'));
+			((uint8_t)c >= 'a' && (uint8_t)c <= 'f') || \
+			((uint8_t)c >= 'A' && (uint8_t)c <= 'F'));
 }

@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 21:44:49 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:54:42 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:54:03 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 int	ft_toupper(int c)
 {
 	if (ft_islower(c))
-		return (c - 'a' + 'A');
+		return ((uint8_t)c - 'a' + 'A');
 	return (c);
 }

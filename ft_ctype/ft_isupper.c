@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 03:12:31 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/16 04:42:35 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/17 21:54:03 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@
 
 int	ft_isupper(int c)
 {
-	return ((char)c >= 'A' && (char)c <= 'Z');
+	return ((uint8_t)c >= 'A' && (uint8_t)c <= 'Z');
 }
