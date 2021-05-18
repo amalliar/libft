@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tcolors.h                                          :+:      :+:    :+:   */
+/*   tst_colors.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:23:04 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/18 00:26:17 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/18 08:42:41 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TCOLORS_H
-# define TCOLORS_H
+#ifndef TST_COLORS_H
+# define TST_COLORS_H
 
 # define BLACK		"\033[1;30m"
 # define RED		"\033[1;31m"
@@ -23,4 +23,4 @@
 # define WHITE		"\033[1;37m"
 # define NOCOLOR	"\033[0m"
 
-#endif // TCOLORS_H
+#endif // TST_COLORS_H

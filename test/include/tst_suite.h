@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tsuite_header.c                              :+:      :+:    :+:   */
+/*   tst_suite.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 23:05:06 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/18 00:22:08 by amalliar         ###   ########.fr       */
+/*   Created: 2021/05/18 00:05:20 by amalliar          #+#    #+#             */
+/*   Updated: 2021/05/18 08:44:04 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tutility.h"
+#ifndef TST_SUITE_H
+# define TST_SUITE_H
 
-void	print_tsuite_header(char const *tsuite_name)
-{
-	printf("%s==>%s Running test suite for %s...%s\n", GREEN, WHITE, \
-		tsuite_name, NOCOLOR);
-}
+void	tst_suite_ft_ctype(void);
+
+#endif // TST_SUITE_H

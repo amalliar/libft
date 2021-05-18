@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/05/18 01:47:46 by amalliar         ###   ########.fr        #
+#    Updated: 2021/05/18 09:10:24 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,21 +31,24 @@ CYAN       := \033[1;36m
 WHITE      := \033[1;37m
 NOCOLOR    := \033[0m
 
-INCLUDE    := -I./include -I../include -I../include/ft_printf
-LIB        := -L.. -lft
+INCLUDE    := -I./include \
+              -I../include \
+	      -I../include/ft_printf
+LIBS       := -L.. -lft
 LIBFT      := ../libft.a
 NAME       := test
 OBJDIR     := .obj
 DEPDIR     := .dep
 
-TSUITE     := tsuite_ft_ctype.c \
-              tsuite_main.c
+FUNCTIONAL := tst_suite_ft_ctype.c \
+              tst_main.c
+FUNCTIONAL := $(addprefix functional/, $(FUNCTIONAL))
 
-TUTILITY   := print_tbatch_header.c \
-              print_tsuite_header.c
-TUTILITY   := $(addprefix tutility/, $(TUTILITY))
+UTILS      := tst_print_batch_header.c \
+              tst_print_suite_header.c
+UTILS      := $(addprefix utils/, $(UTILS))
 
-SRCS       := $(TSUITE) $(TUTILITY)
+SRCS       := $(FUNCTIONAL) $(UTILS)
 OBJS       := $(SRCS:%.c=$(OBJDIR)/%.o)
 DEPS       := $(SRCS:%.c=$(DEPDIR)/%.d)
 
@@ -56,7 +59,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
 	@printf $(PREBUILD_MSG)
 	@printf "  $(BLUE)->$(NOCOLOR) Linking executable...\n"
-	$(CC) $(CFLAGS) $^ $(LIB) -o $@
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 	@printf "$(GREEN)==>$(WHITE) Finished making: $(NAME)\n"
 .PHONY: all
 
@@ -69,10 +72,12 @@ $(OBJDIR)/%.o: %.c $(DEPDIR)/%.d | $(OBJDIR) $(DEPDIR)
 	@$(POST_COMPILE)
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR)/tutility
+	@mkdir -p $(OBJDIR)/functional
+	@mkdir -p $(OBJDIR)/utils
 
 $(DEPDIR):
-	@mkdir -p $(DEPDIR)/tutility
+	@mkdir -p $(DEPDIR)/functional
+	@mkdir -p $(DEPDIR)/utils
 
 $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d

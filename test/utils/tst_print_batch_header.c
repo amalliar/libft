@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tutility.h                                         :+:      :+:    :+:   */
+/*   tst_print_batch_header.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 00:09:25 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/18 01:01:12 by amalliar         ###   ########.fr       */
+/*   Created: 2021/05/17 23:12:49 by amalliar          #+#    #+#             */
+/*   Updated: 2021/05/18 08:46:58 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TUTILITY_H
-# define TUTILITY_H
+#include "tst_utils.h"
 
-# include <assert.h>
-# include <stdio.h>
-# include "tcolors.h"
-
-void	print_tsuite_header(char const *tsuite_name);
-void	print_tbatch_header(char const *tbatch_name);
-
-#endif // TUTILITY_H
+void	tst_print_batch_header(char const *batch_name)
+{
+	printf("  %s->%s Testing %-16s ", BLUE, NOCOLOR, batch_name);
+}

@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/05/18 04:02:32 by amalliar         ###   ########.fr        #
+#    Updated: 2021/05/18 09:07:59 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,9 +159,9 @@ $(NAMESO): $(OBJS)
 .PHONY: so
 
 test: $(NAME)
-	@$(MAKE) -C tsuite MAKEFLAGS=
-	@./tsuite/test
-	@-rm -f tsuite/test
+	@$(MAKE) -C test MAKEFLAGS=
+	@./test/test
+	@-rm -f test/test
 .PHONY: test
 
 $(OBJDIR)/%.o: %.c $(DEPDIR)/%.d | $(OBJDIR) $(DEPDIR)
