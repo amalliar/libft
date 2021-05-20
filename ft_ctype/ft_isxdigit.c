@@ -22,6 +22,6 @@
 int	ft_isxdigit(int c)
 {
 	return (ft_isdigit(c) || \
-			((uint8_t)c >= 'a' && (uint8_t)c <= 'f') || \
-			((uint8_t)c >= 'A' && (uint8_t)c <= 'F'));
+			((t_uint8)c >= 'a' && (t_uint8)c <= 'f') || \
+			((t_uint8)c >= 'A' && (t_uint8)c <= 'F'));
 }

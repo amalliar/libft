@@ -23,6 +23,6 @@
 int	ft_tolower(int c)
 {
 	if (ft_isupper(c))
-		return ((uint8_t)c - 'A' + 'a');
+		return ((t_uint8)c - 'A' + 'a');
 	return (c);
 }

@@ -23,5 +23,5 @@
 
 int	ft_isspace(int c)
 {
-	return (((uint8_t)c >= '\t' && (uint8_t)c <= '\r') || (uint8_t)c == ' ');
+	return (((t_uint8)c >= '\t' && (t_uint8)c <= '\r') || (t_uint8)c == ' ');
 }

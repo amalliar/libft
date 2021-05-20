@@ -6,14 +6,14 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 07:26:04 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/17 21:49:38 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/05/20 08:28:10 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CTYPE_H
 # define FT_CTYPE_H
 
-# include <stdint.h>
+typedef unsigned char	t_uint8;
 
 /*
 ** These functions take the int equivalent of one character as parameter and
@@ -23,7 +23,7 @@
 */
 
 /*
-** Character classification functions
+** Character classification functions.
 */
 
 int		ft_isalnum(int c);
@@ -40,7 +40,7 @@ int		ft_isupper(int c);
 int		ft_isxdigit(int c);
 
 /*
-** Character conversion functions
+** Character conversion functions.
 */
 
 int		ft_tolower(int c);

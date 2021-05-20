@@ -23,6 +23,6 @@
 int	ft_toupper(int c)
 {
 	if (ft_islower(c))
-		return ((uint8_t)c - 'a' + 'A');
+		return ((t_uint8)c - 'a' + 'A');
 	return (c);
 }

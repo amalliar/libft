@@ -21,5 +21,5 @@
 
 int	ft_isblank(int c)
 {
-	return ((uint8_t)c == ' ' || (uint8_t)c == '\t');
+	return ((t_uint8)c == ' ' || (t_uint8)c == '\t');
 }

@@ -21,5 +21,5 @@
 
 int	ft_islower(int c)
 {
-	return ((uint8_t)c >= 'a' && (uint8_t)c <= 'z');
+	return ((t_uint8)c >= 'a' && (t_uint8)c <= 'z');
 }

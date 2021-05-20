@@ -21,5 +21,5 @@
 
 int	ft_isupper(int c)
 {
-	return ((uint8_t)c >= 'A' && (uint8_t)c <= 'Z');
+	return ((t_uint8)c >= 'A' && (t_uint8)c <= 'Z');
 }

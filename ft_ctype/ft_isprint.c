@@ -22,5 +22,5 @@
 
 int	ft_isprint(int c)
 {
-	return ((uint8_t)c > 0x1f && (uint8_t)c < 0x7f);
+	return ((t_uint8)c > 0x1f && (t_uint8)c < 0x7f);
 }
