@@ -6,7 +6,7 @@
 /*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:18:02 by amalliar          #+#    #+#             */
-/*   Updated: 2021/05/18 09:00:39 by amalliar         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:05:41 by amalliar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(void)
 {
+	setvbuf(stdout, NULL, _IONBF, 0);
 	tst_suite_ft_ctype();
 
 	return (0);

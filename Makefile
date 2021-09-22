@@ -6,7 +6,7 @@
 #    By: amalliar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:55:29 by amalliar          #+#    #+#              #
-#    Updated: 2021/05/18 09:07:59 by amalliar         ###   ########.fr        #
+#    Updated: 2021/09/22 18:03:17 by amalliar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,7 +160,7 @@ $(NAMESO): $(OBJS)
 
 test: $(NAME)
 	@$(MAKE) -C test MAKEFLAGS=
-	@./test/test
+	@-./test/test
 	@-rm -f test/test
 .PHONY: test
 
